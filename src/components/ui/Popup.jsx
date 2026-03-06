@@ -52,11 +52,11 @@ const Popup = ({
         className={`relative z-10 w-full max-w-md rounded-2xl bg-white p-5 shadow-[0_24px_80px_rgba(0,0,0,0.2)] ${panelClassName}`}
       >
         <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-lg font-bold text-[#123E56]">{title}</h2>
+          <h2 className="text-lg font-bold text-primary-mid">{title}</h2>
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-[#123E56] transition-colors hover:bg-slate-100"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary-mid transition-colors hover:bg-slate-100"
             aria-label="Close popup"
           >
             <X size={20} />

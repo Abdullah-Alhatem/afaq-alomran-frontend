@@ -12,19 +12,21 @@ const MainHeader = ({ isLoggedIn }) => {
 
   const navLinkClass = ({ isActive }) =>
     `px-6 h-10 inline-flex items-center justify-center rounded-lg text-lg leading-none transition-all duration-200 ${
-      isActive ? 'bg-[#DE8556] text-white font-bold' : 'text-white font-medium hover:bg-white/10'
+      isActive
+        ? 'bg-secondary-light text-white font-bold'
+        : 'text-white font-medium hover:bg-white/10'
     }`
 
   const mobileNavLinkClass = ({ isActive }) =>
     `h-11 px-4 rounded-lg inline-flex items-center justify-start text-base transition-all duration-200 ${
       isActive
-        ? 'bg-[#123E56] text-white font-bold'
-        : 'text-[#123E56] font-medium hover:bg-slate-100'
+        ? 'bg-primary-mid text-white font-bold'
+        : 'text-primary-mid font-medium hover:bg-slate-100'
     }`
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-[#123E56] backdrop-blur-[40px]">
+      <header className="sticky top-0 z-50 w-full bg-primary-mid backdrop-blur-[40px]">
         <div className="mx-auto flex h-[88px] w-full items-center justify-between pl-4 pr-2 sm:pl-6 lg:px-8">
           <div className="flex w-full items-center justify-between gap-10 lg:w-auto lg:justify-normal">
             <Logo imageClassName="h-11" logoSrc={logoForOtherPages} />

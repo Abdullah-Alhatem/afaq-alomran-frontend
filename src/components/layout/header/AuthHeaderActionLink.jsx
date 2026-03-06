@@ -16,8 +16,8 @@ const AuthHeaderActionLink = ({ isSignUp, mobile = false, onClick }) => {
       }
 
   const className = mobile
-    ? 'h-11 rounded-lg border border-[#123E56] text-[#123E56] font-bold inline-flex items-center justify-center w-full hover:bg-[#123E56] hover:text-white transition-all duration-200'
-    : 'hidden md:inline-flex px-6 py-3 border-2 border-[#123E56] text-[#123E56] font-bold text-base leading-6 rounded-lg hover:bg-[#123E56] hover:text-white transition-all duration-200 active:scale-95'
+    ? 'h-11 rounded-lg border border-primary-mid text-primary-mid font-bold inline-flex items-center justify-center w-full hover:bg-primary-mid hover:text-white transition-all duration-200'
+    : 'hidden md:inline-flex px-6 py-3 border-2 border-primary-mid text-primary-mid font-bold text-body rounded-lg hover:bg-primary-mid hover:text-white transition-all duration-200 active:scale-95'
 
   return (
     <Link

@@ -58,7 +58,7 @@ function Footer() {
   ]
 
   return (
-    <footer className="mt-14 bg-[#123E56] text-white shadow-[0px_4px_200px_0px_rgba(232,249,247,0.2)]">
+    <footer className="mt-14 bg-primary-mid text-white shadow-[0px_4px_200px_0px_rgba(232,249,247,0.2)]">
       <div className="mx-auto w-full max-w-[1904px] px-6 py-6 lg:py-[72px]">
         <div className="grid gap-8 md:grid-cols-2 md:items-start lg:grid-cols-[328px_90px_90px_264px] lg:justify-between lg:gap-[72px]">
           <div className="w-full max-w-[328px]">
@@ -66,7 +66,7 @@ function Footer() {
               <img src={footerLogo} alt="AFFAQ" className="h-[72px] w-auto object-contain" />
             </Link>
 
-            <p className="mt-2 text-[14px] leading-[22px] text-[#F8F8F8]">
+            <p className="mt-2 text-body-sm text-white/95">
               Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
             </p>
 
@@ -79,9 +79,9 @@ function Footer() {
                     aria-hidden="true"
                     className="mt-0.5 h-5 w-5 shrink-0 object-contain"
                   />
-                  <div className="text-[16px] leading-6">
-                    <p className="text-[#DE8556] lg:text-white">{item.label}</p>
-                    <div className="text-[#F8F8F8]">{item.content}</div>
+                  <div className="text-body">
+                    <p className="text-secondary-light lg:text-white">{item.label}</p>
+                    <div className="text-white/95">{item.content}</div>
                   </div>
                 </div>
               ))}
@@ -89,13 +89,13 @@ function Footer() {
           </div>
 
           <nav className="w-[90px]">
-            <h3 className="text-[16px] font-bold leading-6 text-[#DE8556]">Company</h3>
+            <h3 className="text-body font-bold text-secondary-light">Company</h3>
             <div className="mt-4 flex flex-col gap-4">
               {companyLinks.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="text-[16px] leading-6 text-white transition-colors hover:text-[#DE8556]"
+                  className="text-body text-white transition-colors hover:text-secondary-light"
                 >
                   {item.label}
                 </Link>
@@ -104,13 +104,13 @@ function Footer() {
           </nav>
 
           <nav className="w-[90px]">
-            <h3 className="text-[16px] font-bold leading-6 text-[#DE8556]">Service</h3>
+            <h3 className="text-body font-bold text-secondary-light">Service</h3>
             <div className="mt-4 flex flex-col gap-4">
               {serviceLinks.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="text-[16px] leading-6 text-white transition-colors hover:text-[#DE8556]"
+                  className="text-body text-white transition-colors hover:text-secondary-light"
                 >
                   {item.label}
                 </Link>
@@ -119,8 +119,8 @@ function Footer() {
           </nav>
 
           <div className="max-w-[264px]">
-            <h3 className="text-[16px] font-bold leading-6 text-[#DE8556]">Newsletter</h3>
-            <p className="mt-3 text-[12px] leading-6 text-white">
+            <h3 className="text-body font-bold text-secondary-light">Newsletter</h3>
+            <p className="mt-3 text-caption text-white">
               Subscribe to our newsletter and receive updates via email
             </p>
 
@@ -133,12 +133,12 @@ function Footer() {
                   id="newsletter-email"
                   type="email"
                   placeholder="Email Address"
-                  className="h-10 w-full rounded-[4px] border border-[#D7D7D7] bg-transparent px-[15px] text-[14px] text-white outline-none placeholder:text-[#F8F8F8]"
+                  className="h-10 w-full rounded-sm border border-grey-stroke bg-transparent px-[15px] text-body-sm text-white outline-none placeholder:text-white/95"
                 />
                 <button
                   type="submit"
                   aria-label="Send"
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[2px] bg-[#DE8556] transition-colors hover:bg-[#D76838]"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary-light transition-colors hover:bg-secondary"
                 >
                   <img
                     src={sendIcon}
@@ -150,7 +150,7 @@ function Footer() {
               </div>
             </form>
 
-            <p className="mt-4 text-[12px] font-semibold text-[#DE8556]">Social Account</p>
+            <p className="mt-4 text-label font-semibold text-secondary-light">Social Account</p>
             <div className="mt-4 flex items-center gap-3">
               {socialLinks.map((link) => (
                 <a
@@ -171,8 +171,8 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-[#DE8556] pt-6">
-          <p className="text-center text-[16px] leading-6 text-[#F8F8F8]">
+        <div className="mt-12 border-t border-secondary-light pt-6">
+          <p className="text-center text-body text-white/95">
             �{new Date().getFullYear()} Afaaq. All rights reserved
           </p>
         </div>

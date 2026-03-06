@@ -19,7 +19,7 @@ const MainHeaderAccountActions = ({ mobile = false, onActionClick }) => {
         aria-label="Notifications"
       >
         <Bell size={mobile ? 25 : 20} strokeWidth={1.8} />
-        <span className="absolute right-1.5 top-1.5 h-4 w-4 rounded-full bg-[#DE8556] text-[10px] font-bold leading-4 text-white text-center">
+        <span className="absolute right-1.5 top-1.5 h-4 w-4 rounded-full bg-secondary-light text-[10px] font-bold leading-4 text-white text-center">
           6
         </span>
       </Link>
