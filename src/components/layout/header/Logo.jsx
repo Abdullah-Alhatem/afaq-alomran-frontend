@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import logo from '../../../assets/Logo/LogoForSignUpAndSignIn.png'
+import logo from '../../../assets/Logo/logo.svg'
 
 const Logo = ({ className = '', imageClassName = 'h-10', logoSrc = logo }) => (
   <Link to="/" className={`flex items-center gap-2 cursor-pointer group ${className}`}>
