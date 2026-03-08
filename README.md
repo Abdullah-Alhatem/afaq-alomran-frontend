@@ -25,3 +25,7 @@ npm install
 npm run dev
 ```
 
+-do not use typescript
+-use tailwind css to style
+-use zustand to ui states management
+-use tanstack react query to handle rest api
