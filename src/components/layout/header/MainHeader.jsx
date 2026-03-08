@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logoForOtherPages from '../../../assets/Logo/LogoForOtherPages.png'
+import logoForOtherPages from '../../../assets/Logo/logo(Light).svg'
 import Popup from '../../ui/Popup'
 import HeaderNavLinks from './HeaderNavLinks'
 import HeaderMenuToggleButton from './HeaderMenuToggleButton'
