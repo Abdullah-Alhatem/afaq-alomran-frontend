@@ -58,7 +58,7 @@ function Footer() {
   ]
 
   return (
-    <footer className="mt-14 bg-primary-mid text-white shadow-[0px_4px_200px_0px_rgba(232,249,247,0.2)]">
+    <footer className="bg-primary-mid text-white shadow-[0px_4px_200px_0px_rgba(232,249,247,0.2)]">
       <div className="mx-auto w-full max-w-[1904px] px-6 py-6 lg:py-[72px]">
         <div className="grid gap-8 md:grid-cols-2 md:items-start lg:grid-cols-[328px_90px_90px_264px] lg:justify-between lg:gap-[72px]">
           <div className="w-full max-w-[328px]">
@@ -171,9 +171,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-secondary-light pt-6">
+        <div className="mt-12 border-t-2 border-secondary-light pt-6">
           <p className="text-center text-body text-white/95">
-            �{new Date().getFullYear()} Afaaq. All rights reserved
+            ©{new Date().getFullYear()} Afaaq. All rights reserved
           </p>
         </div>
       </div>
