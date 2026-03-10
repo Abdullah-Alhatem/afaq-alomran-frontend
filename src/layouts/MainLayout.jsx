@@ -7,7 +7,7 @@ function MainLayout() {
     <div>
       <Header />
 
-      <div className="min-h-[1000px]">
+      <div className="">
         <Outlet />
       </div>
 
