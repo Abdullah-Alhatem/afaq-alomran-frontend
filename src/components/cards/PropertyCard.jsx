@@ -21,6 +21,7 @@ export function PropertyCard({
   const storedFavorite = usePropertyCardStore((state) => state.favorites[id] ?? isFavorite)
 
   const handleFavorite = () => {
+    console.log('PropertyCard - ID:', id, 'Type:', typeof id, 'Current favorite:', storedFavorite)
     const newFavoriteState = !storedFavorite
     toggleFavorite(id, newFavoriteState)
     onFavoriteClick?.(newFavoriteState)
@@ -36,7 +37,7 @@ export function PropertyCard({
   return (
     <div
       className={cn(
-        'flex flex-col w-[332px] md:w-[364px] bg-white rounded-[10.9451px] md:rounded-[16px]',
+        'flex flex-col w-full max-w-[364px] bg-white rounded-[10.9451px] md:rounded-[16px]',
         'border border-[#D7D7D7] shadow-sm',
         'hover:shadow-lg transition-shadow duration-300',
         'p-2 md:p-2 gap-3 md:gap-3',
