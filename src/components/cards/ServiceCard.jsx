@@ -13,7 +13,7 @@ export function ServiceCard({
       className={cn(
         'flex flex-col items-center justify-center mx-auto',
         'p-[35.8554px] gap-[35.86px]',
-        'max-w-[372px] h-[407.86px]',
+        'w-[372px] h-[407.86px]',
         'bg-white border border-[#D7D7D7]',
         'shadow-[8px_16px_32px_#F6F6F6] rounded-[26.8916px]',
       )}
