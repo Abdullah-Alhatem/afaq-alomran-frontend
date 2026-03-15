@@ -149,7 +149,7 @@ function SignUp() {
           </p>
         </AuthPageBox>
       </main>
-      <LookingForADreamBox />
+      <LookingForADreamBox variant="auth" />
     </div>
   )
 }

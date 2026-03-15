@@ -81,7 +81,7 @@ function CreateNewPassword() {
           </form>
         </AuthPageBox>
       </main>
-      <LookingForADreamBox />
+      <LookingForADreamBox variant="auth" />
     </div>
   )
 }

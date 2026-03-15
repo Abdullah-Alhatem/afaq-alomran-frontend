@@ -22,6 +22,7 @@ import Portfolios from '../pages/portfolios/Portfolios'
 import PortfolioDetails from '../pages/portfolios/PortfolioDetails'
 import FAQs from '../pages/FAQs'
 import ContactUs from '../pages/ContactUs'
+import NotFound from '../pages/NotFound'
 
 // Account Pages
 import MyAccount from '../pages/account/MyAccount'
@@ -52,6 +53,7 @@ export const router = createBrowserRouter([
       { path: 'faqs', element: <FAQs /> },
       { path: 'contact-us', element: <ContactUs /> },
       { path: 'map', element: <MapPage /> },
+      { path: '*', element: <NotFound /> },
       // Auth Routes
       {
         path: '/sign-in',

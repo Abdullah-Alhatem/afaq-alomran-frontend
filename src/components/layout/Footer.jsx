@@ -153,9 +153,9 @@ function Footer() {
             <p className="mt-4 text-label font-semibold text-secondary-light">Social Account</p>
             <div className="mt-4 flex items-center gap-3">
               {socialLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={link.href}
                   aria-label={link.label}
                   className="inline-flex h-6 w-6 items-center justify-center transition-opacity hover:opacity-80"
                 >
@@ -165,7 +165,7 @@ function Footer() {
                     aria-hidden="true"
                     className="h-6 w-6 object-contain"
                   />
-                </a>
+                </Link>
               ))}
             </div>
           </div>

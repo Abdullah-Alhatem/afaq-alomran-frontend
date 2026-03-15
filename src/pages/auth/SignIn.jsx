@@ -107,7 +107,7 @@ function SignIn() {
           </p>
         </AuthPageBox>
       </main>
-      <LookingForADreamBox />
+      <LookingForADreamBox variant="auth" />
     </div>
   )
 }

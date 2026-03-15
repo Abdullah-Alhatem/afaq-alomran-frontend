@@ -64,7 +64,7 @@ function ForgotPassword() {
           </p>
         </AuthPageBox>
       </main>
-      <LookingForADreamBox />
+      <LookingForADreamBox variant="auth" />
     </div>
   )
 }
