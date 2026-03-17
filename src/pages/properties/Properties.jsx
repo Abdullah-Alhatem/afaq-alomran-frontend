@@ -1,10 +1,149 @@
 import CoverSection from '@/components/CoverSection'
-import React from 'react'
+import LookingForADreamBox from '@/components/LookingForADreamBox'
+import PropertyCard from '@/components/cards/PropertyCard'
+import PropertiesFiltersSidebar from '@/components/PropertiesPage/PropertiesFiltersSidebar'
+import PropertiesResultsHeader from '@/components/PropertiesPage/PropertiesResultsHeader'
+import { filterAndSortProperties } from '@/components/PropertiesPage/filterAndSortProperties'
+import { mockProperties } from '@/components/PropertiesPage/mockProperties'
+import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Properties() {
+  const navigate = useNavigate()
+
+  const [searchQuery, setSearchQuery] = useState('')
+  const [priceMin, setPriceMin] = useState('')
+  const [priceMax, setPriceMax] = useState('')
+  const [selectedRating, setSelectedRating] = useState(0)
+  const [sortBy, setSortBy] = useState('default')
+
+  const [selectedPropertyTypes, setSelectedPropertyTypes] = useState(() => new Set())
+  const [selectedAmenities, setSelectedAmenities] = useState(() => new Set())
+  const [selectedPriceRange, setSelectedPriceRange] = useState('')
+  const [selectedSpace, setSelectedSpace] = useState('')
+  const [selectedBedBath, setSelectedBedBath] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
+
+  const properties = mockProperties
+
+  const toggleInSet = (setValue, item) => {
+    const next = new Set(setValue)
+    if (next.has(item)) next.delete(item)
+    else next.add(item)
+    return next
+  }
+
+  const onTogglePropertyType = (type) => {
+    setSelectedPropertyTypes((prev) => toggleInSet(prev, type))
+  }
+
+  const onToggleAmenity = (amenity) => {
+    setSelectedAmenities((prev) => toggleInSet(prev, amenity))
+  }
+
+  const clearFilters = () => {
+    setSearchQuery('')
+    setPriceMin('')
+    setPriceMax('')
+    setSelectedRating(0)
+    setSortBy('default')
+    setSelectedPropertyTypes(new Set())
+    setSelectedAmenities(new Set())
+    setSelectedPriceRange('')
+    setSelectedSpace('')
+    setSelectedBedBath('')
+    setSelectedCategory('')
+  }
+
+  const filteredProperties = useMemo(() => {
+    return filterAndSortProperties({
+      properties,
+      searchQuery,
+      priceMin,
+      priceMax,
+      selectedRating,
+      sortBy,
+      selectedPropertyTypes,
+      selectedAmenities,
+      selectedPriceRange,
+      selectedSpace,
+      selectedBedBath,
+      selectedCategory,
+    })
+  }, [
+    properties,
+    searchQuery,
+    priceMin,
+    priceMax,
+    selectedRating,
+    sortBy,
+    selectedPropertyTypes,
+    selectedAmenities,
+    selectedPriceRange,
+    selectedSpace,
+    selectedBedBath,
+    selectedCategory,
+  ])
+
   return (
-    <div>
+    <div className="overflow-hidden">
       <CoverSection title="Search Explore Properties" currentPage="Search Explore Properties" />
+
+      <section className="bg-[#F8F8F8] py-10 lg:py-[72px] -mx-8">
+        <div className="home-shell">
+          <div className="flex flex-col lg:flex-row items-start justify-center gap-8 ">
+            <PropertiesFiltersSidebar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              onClearFilters={clearFilters}
+              priceMin={priceMin}
+              setPriceMin={setPriceMin}
+              priceMax={priceMax}
+              setPriceMax={setPriceMax}
+              selectedPropertyTypes={selectedPropertyTypes}
+              onTogglePropertyType={onTogglePropertyType}
+              selectedAmenities={selectedAmenities}
+              onToggleAmenity={onToggleAmenity}
+              selectedPriceRange={selectedPriceRange}
+              setSelectedPriceRange={setSelectedPriceRange}
+              selectedSpace={selectedSpace}
+              setSelectedSpace={setSelectedSpace}
+              selectedBedBath={selectedBedBath}
+              setSelectedBedBath={setSelectedBedBath}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+              selectedRating={selectedRating}
+              setSelectedRating={setSelectedRating}
+            />
+
+            <div className="w-full flex-1 flex flex-col gap-14">
+              <PropertiesResultsHeader />
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                {filteredProperties.map((property) => (
+                  <PropertyCard
+                    key={property.id}
+                    id={property.id}
+                    image={property.image}
+                    title={property.title}
+                    location={property.location}
+                    beds={String(property.beds)}
+                    baths={String(property.baths)}
+                    sqft={`${property.sqft} sq ft`}
+                    price={property.price}
+                    status={property.status}
+                    onViewDetails={() => navigate(`/properties/${property.id}`)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <LookingForADreamBox background="bg-[#F8F8F8]" />
     </div>
   )
 }
