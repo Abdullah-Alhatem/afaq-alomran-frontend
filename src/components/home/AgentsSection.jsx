@@ -77,7 +77,11 @@ function AgentsSection() {
         <div className="flex flex-col gap-5 items-center">
           <div className="mt-10 w-full grid grid-cols-1 gap-y-10 sm:grid-cols-2 md:mt-12 xl:flex xl:justify-between">
             {agentItems.map((agent) => (
-              <Link to={`/agents/${agent.id}`} key={agent.id} className="text-center max-w-[280px]">
+              <Link
+                to={`/agents/${agent.id}`}
+                key={agent.id}
+                className="text-center max-w-[280px] mx-auto"
+              >
                 <div className="block overflow-hidden rounded-[12px] h-[450px] w-full sm:h-[340px] lg:h-[390px]">
                   <img
                     src={agent.image}
