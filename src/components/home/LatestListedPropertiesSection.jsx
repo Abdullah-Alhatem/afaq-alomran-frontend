@@ -2,12 +2,13 @@ import React from 'react'
 import PropertySection from './PropertySection'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import roomCardImg from '@/assets/images/roomCard.png'
 
 function LatestListedPropertiesSection() {
   const latestProperties = [
     {
       id: 1,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Warm and Cozy Apartment',
       location: 'Belia Gargen, California',
       beds: '1',
@@ -18,7 +19,7 @@ function LatestListedPropertiesSection() {
     },
     {
       id: 2,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Modern Family Home',
       location: 'Downtown District',
       beds: '3',
@@ -29,7 +30,7 @@ function LatestListedPropertiesSection() {
     },
     {
       id: 3,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Luxury Villa',
       location: 'Beverly Hills',
       beds: '5',
@@ -40,7 +41,7 @@ function LatestListedPropertiesSection() {
     },
     {
       id: 4,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Studio Apartment',
       location: 'City Center',
       beds: '1',

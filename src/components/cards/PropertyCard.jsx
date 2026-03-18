@@ -2,10 +2,11 @@ import { MapPin, Bath, BedDouble, Expand } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { HeartIcon } from './HeartIcon'
 import { usePropertyCardStore } from '@/stores/usePropertyCardStore'
+import defaultRoomCardImg from '@/assets/images/roomCard.png'
 
 export function PropertyCard({
   id,
-  image = '/src/assets/images/roomCard.png',
+  image = defaultRoomCardImg,
   title = 'Warm and Cozy Apartment',
   location = 'Belia Gargen, California',
   beds = '1 bed',

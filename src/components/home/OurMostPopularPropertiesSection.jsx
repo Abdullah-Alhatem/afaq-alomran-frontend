@@ -1,6 +1,7 @@
 import PropertySection from './PropertySection'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useState } from 'react'
+import roomCardImg from '@/assets/images/roomCard.png'
 
 function OurMostPopularPropertiesSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -8,7 +9,7 @@ function OurMostPopularPropertiesSection() {
   const popularProperties = [
     {
       id: 5,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Beach House Paradise',
       location: 'Miami Beach',
       beds: '4',
@@ -19,7 +20,7 @@ function OurMostPopularPropertiesSection() {
     },
     {
       id: 6,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Mountain Retreat',
       location: 'Aspen, Colorado',
       beds: '6',
@@ -30,7 +31,7 @@ function OurMostPopularPropertiesSection() {
     },
     {
       id: 7,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Urban Loft',
       location: 'New York City',
       beds: '2',
@@ -41,7 +42,7 @@ function OurMostPopularPropertiesSection() {
     },
     {
       id: 8,
-      image: '/src/assets/images/roomCard.png',
+      image: roomCardImg,
       title: 'Suburban Dream',
       location: 'Suburbs',
       beds: '3',

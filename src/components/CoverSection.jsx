@@ -1,4 +1,5 @@
 import React from 'react'
+import bgImage from '@/assets/images/bg-image.jpg'
 
 function CoverSection({ title, currentPage, parentPage = 'Home' }) {
   return (
@@ -6,8 +7,7 @@ function CoverSection({ title, currentPage, parentPage = 'Home' }) {
       className="flex flex-col justify-center items-start gap-4 px-40"
       style={{
         height: '248px',
-        background:
-          'linear-gradient(0deg, rgba(6, 48, 83, 0.7), rgba(6, 48, 83, 0.7)), url("/src/assets/images/bg-image.jpg")',
+        backgroundImage: `linear-gradient(0deg, rgba(6, 48, 83, 0.7), rgba(6, 48, 83, 0.7)), url(${bgImage})`,
         backgroundSize: 'cover',
         backgroundPosition: '25% 70%',
         backgroundRepeat: 'no-repeat',

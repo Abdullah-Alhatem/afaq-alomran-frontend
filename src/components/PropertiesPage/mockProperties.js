@@ -1,7 +1,9 @@
+import roomCardImg from '@/assets/images/roomCard.png'
+
 export const mockProperties = [
   {
     id: 1,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Warm and Cozy Apartment',
     location: 'Belia Gargen, California',
     beds: 1,
@@ -16,7 +18,7 @@ export const mockProperties = [
   },
   {
     id: 2,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Modern Family Home',
     location: 'Downtown District',
     beds: 3,
@@ -31,7 +33,7 @@ export const mockProperties = [
   },
   {
     id: 3,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'City Studio',
     location: 'City Center',
     beds: 1,
@@ -46,7 +48,7 @@ export const mockProperties = [
   },
   {
     id: 4,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Single Family Retreat',
     location: 'Green Valley',
     beds: 4,
@@ -61,7 +63,7 @@ export const mockProperties = [
   },
   {
     id: 5,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Sunset Apartment',
     location: 'Beverly Hills',
     beds: 2,
@@ -76,7 +78,7 @@ export const mockProperties = [
   },
   {
     id: 6,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Premium Villa',
     location: 'Palm Springs',
     beds: 5,
@@ -91,7 +93,7 @@ export const mockProperties = [
   },
   {
     id: 7,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Comfort Living Townhome',
     location: 'West Side',
     beds: 3,
@@ -106,7 +108,7 @@ export const mockProperties = [
   },
   {
     id: 8,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Smart Living Flat',
     location: 'Midtown',
     beds: 1,
@@ -121,7 +123,7 @@ export const mockProperties = [
   },
   {
     id: 9,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Garden House',
     location: 'Suburbs',
     beds: 2,
@@ -136,7 +138,7 @@ export const mockProperties = [
   },
   {
     id: 10,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Minimal Studio',
     location: 'Old Town',
     beds: 1,
@@ -151,7 +153,7 @@ export const mockProperties = [
   },
   {
     id: 11,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Single Family Haven',
     location: 'Hillside',
     beds: 5,
@@ -166,7 +168,7 @@ export const mockProperties = [
   },
   {
     id: 12,
-    image: '/src/assets/images/roomCard.png',
+    image: roomCardImg,
     title: 'Downtown Apartment',
     location: 'Business Bay',
     beds: 2,
