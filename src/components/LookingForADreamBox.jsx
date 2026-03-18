@@ -9,7 +9,7 @@ import vectorTwo from '../assets/LookingForDreamHomeBox/Vector 2.svg'
 
 const WIDTH_VARIANTS = {
   default: 'home-shell',
-  auth: 'max-w-[1288px]',
+  auth: 'max-w-[1288px] mx-4 sm:mx-8 lg:mx-16',
 }
 
 const SECTION_VARIANTS = {

@@ -143,7 +143,7 @@ function Properties() {
         </div>
       </section>
 
-      <LookingForADreamBox background="bg-[#F8F8F8]" />
+      <LookingForADreamBox background="bg-white" />
     </div>
   )
 }
