@@ -93,6 +93,7 @@ export default {
       /* ─── Typography ─── */
       fontFamily: {
         sans: ['Cairo', 'sans-serif'],
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       fontSize: {
         h1: ['32px', { lineHeight: '40px', fontWeight: '700' }],

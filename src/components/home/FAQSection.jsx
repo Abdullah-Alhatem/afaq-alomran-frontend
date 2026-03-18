@@ -2,34 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
 import faqIllustration from "@/assets/icons/FAQ'sIcon.svg"
-
-const faqItems = [
-  {
-    question: 'How do I start searching for a property with AFAAQ?',
-    answer:
-      "You can begin by using our property search tool, which lets you filter by location, property type, price range, and other features. Once you find a property you're interested in, open its details and schedule a visit.",
-  },
-  {
-    question: 'What services does AFAAQ offer for first-time homebuyers?',
-    answer:
-      'AFAAQ supports first-time buyers with property discovery, budget guidance, viewing coordination, and help throughout the full buying process.',
-  },
-  {
-    question: 'Can AFAAQ help me sell my property?',
-    answer:
-      'Yes. We help with listing setup, pricing guidance, buyer inquiries, and arranging visits until you complete your sale.',
-  },
-  {
-    question: 'What types of properties does AFAAQ specialize in?',
-    answer:
-      'We work across apartments, villas, houses, and investment properties, with options that fit different budgets and needs.',
-  },
-  {
-    question: 'Can I schedule a visit to view properties?',
-    answer:
-      'Yes. Each property listing includes viewing options so you can request a time that works for you.',
-  },
-]
+import { faqItemsPreview } from '@/data/faqItems'
 
 function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0)
@@ -70,7 +43,7 @@ function FAQSection() {
 
         <div>
           <div className="space-y-4 md:space-y-5">
-            {faqItems.map((item, index) => {
+            {faqItemsPreview.map((item, index) => {
               const isOpen = openIndex === index
 
               return (
