@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 
 import elementLine from '../assets/LookingForDreamHomeBox/Element.svg'
@@ -74,12 +74,12 @@ function LookingForADreamBox({ variant = 'default', customWidth, background = 'b
                     </p>
                   </div>
 
-                  <button
-                    type="button"
+                  <Link
+                    to="/properties"
                     className="w-full shrink-0 whitespace-nowrap rounded-[18px] bg-secondary px-6 py-3 text-btn font-bold leading-[150%] text-secondary-foreground transition hover:bg-secondary-light lg:w-fit lg:rounded-xl"
                   >
                     Explore Properties
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

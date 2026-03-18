@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { ACCOUNT_PAGE_HANDLES } from '../components/account/accountLayoutConfig'
 
 // Layouts
 import MainLayout from '../layouts/MainLayout'
@@ -75,20 +76,38 @@ export const router = createBrowserRouter([
       {
         path: '/my-account',
         element: <AccountLayout />,
+        handle: { accountPage: ACCOUNT_PAGE_HANDLES.personalInfo },
         children: [
           { index: true, element: <MyAccount /> },
 
           {
             path: 'personal-info',
+            handle: { accountPage: ACCOUNT_PAGE_HANDLES.personalInfo },
             children: [
               { index: true, element: <ShowInfo /> },
-              { path: 'edit', element: <EditProfile /> },
+              {
+                path: 'edit',
+                element: <EditProfile />,
+                handle: { accountPage: ACCOUNT_PAGE_HANDLES.editProfile },
+              },
             ],
           },
 
-          { path: 'appointments', element: <Appointments /> },
-          { path: 'favorite-properties', element: <FavoriteProperties /> },
-          { path: 'notifications', element: <Notifications /> },
+          {
+            path: 'appointments',
+            element: <Appointments />,
+            handle: { accountPage: ACCOUNT_PAGE_HANDLES.appointments },
+          },
+          {
+            path: 'favorite-properties',
+            element: <FavoriteProperties />,
+            handle: { accountPage: ACCOUNT_PAGE_HANDLES.favoriteProperties },
+          },
+          {
+            path: 'notifications',
+            element: <Notifications />,
+            handle: { accountPage: ACCOUNT_PAGE_HANDLES.notifications },
+          },
         ],
       },
     ],

@@ -1,7 +1,7 @@
-import React from 'react'
+import { Navigate } from 'react-router-dom'
 
 function MyAccount() {
-  return <div>MyAccount</div>
+  return <Navigate to="personal-info" replace />
 }
 
 export default MyAccount
