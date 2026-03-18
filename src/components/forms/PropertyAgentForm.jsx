@@ -5,8 +5,10 @@ import { cn } from '@/lib/utils'
 
 const reviewFormStars = [1, 2, 3, 4, 5]
 
-const cardClassName =
+const defaultCardClassName =
   'rounded-[24px] border border-[#EBEBEB] bg-white p-5 shadow-[0_28px_80px_rgba(7,46,69,0.08)] sm:rounded-[28px] sm:p-8 lg:p-10'
+const contactCardClassName =
+  'rounded-[16px] bg-white p-6 shadow-[4px_10px_30px_0px_rgba(0,0,0,0.03)] sm:p-8 lg:p-10'
 const labelClassName = 'text-base font-medium text-[#181818]'
 const inputClassName =
   'mt-3 h-14 w-full rounded-[12px] border border-[#D7D7D7] bg-[#ECF1F6] px-4 text-base text-[#5C5C5C] outline-none transition-colors duration-200 placeholder:text-[#9A9A9A] focus:border-primary-mid'
@@ -50,9 +52,13 @@ function CaptchaPlaceholder() {
 function PropertyAgentForm({ variant = 'review', className }) {
   const [selectedRating, setSelectedRating] = useState(0)
   const isReview = variant === 'review'
+  const isContact = variant === 'contact'
 
   return (
-    <form className={cn(cardClassName, className)} onSubmit={(event) => event.preventDefault()}>
+    <form
+      className={cn(isContact ? contactCardClassName : defaultCardClassName, className)}
+      onSubmit={(event) => event.preventDefault()}
+    >
       {isReview ? (
         <>
           <h3 className="text-[1.75rem] font-semibold leading-tight text-primary-mid sm:text-[2rem] lg:text-[2.25rem]">
@@ -91,24 +97,32 @@ function PropertyAgentForm({ variant = 'review', className }) {
           </div>
         </>
       ) : (
-        <label className="block">
-          <span className={labelClassName}>Inquiry Type</span>
-          <div className="relative">
-            <select defaultValue="" className={cn(inputClassName, 'appearance-none pr-12')}>
-              <option value="" disabled>
-                Select your Inquiry
-              </option>
-              <option value="buying">Buying Property</option>
-              <option value="selling">Selling Property</option>
-              <option value="viewing">Book a Viewing</option>
-            </select>
+        <>
+          {isContact ? (
+            <h3 className="text-[1.75rem] font-semibold leading-tight text-primary-mid sm:text-[2rem] lg:text-[2.25rem]">
+              Get a Quote
+            </h3>
+          ) : null}
 
-            <ChevronDown
-              aria-hidden="true"
-              className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#929AA5]"
-            />
-          </div>
-        </label>
+          <label className={cn('block', isContact ? 'mt-7' : '')}>
+            <span className={labelClassName}>Inquiry Type</span>
+            <div className="relative">
+              <select defaultValue="" className={cn(inputClassName, 'appearance-none pr-12')}>
+                <option value="" disabled>
+                  Select your Inquiry
+                </option>
+                <option value="buying">Buying Property</option>
+                <option value="selling">Selling Property</option>
+                <option value="viewing">Book a Viewing</option>
+              </select>
+
+              <ChevronDown
+                aria-hidden="true"
+                className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#929AA5]"
+              />
+            </div>
+          </label>
+        </>
       )}
 
       {isReview ? (
@@ -174,23 +188,41 @@ function PropertyAgentForm({ variant = 'review', className }) {
         <span>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</span>
       </label>
 
-      {!isReview ? (
-        <div className="mt-8 flex justify-center">
-          <CaptchaPlaceholder />
+      {isReview ? (
+        <div className="mt-8 flex sm:mt-10 sm:justify-center">
+          <button
+            type="submit"
+            className="inline-flex w-full min-w-[148px] items-center justify-center rounded-[12px] bg-primary-mid px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-primary sm:w-auto"
+          >
+            Submit
+          </button>
         </div>
-      ) : null}
+      ) : isContact ? (
+        <div className="mt-8 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-16">
+          <CaptchaPlaceholder />
+          <button
+            type="submit"
+            className="inline-flex w-full items-center justify-center rounded-[8px] bg-primary-mid px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-primary sm:h-[64px] sm:min-w-[256px] sm:w-auto"
+          >
+            Get an Free Service
+          </button>
+        </div>
+      ) : (
+        <>
+          <div className="mt-8 flex justify-center">
+            <CaptchaPlaceholder />
+          </div>
 
-      <div className="mt-8 flex sm:mt-10 sm:justify-center">
-        <button
-          type="submit"
-          className={cn(
-            'inline-flex w-full items-center justify-center rounded-[12px] bg-primary-mid px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-primary sm:w-auto',
-            isReview ? 'min-w-[148px]' : 'min-w-[228px]',
-          )}
-        >
-          {isReview ? 'Submit' : 'Get an Free Service'}
-        </button>
-      </div>
+          <div className="mt-8 flex sm:mt-10 sm:justify-center">
+            <button
+              type="submit"
+              className="inline-flex w-full min-w-[228px] items-center justify-center rounded-[12px] bg-primary-mid px-8 py-4 text-base font-semibold text-white transition-colors duration-200 hover:bg-primary sm:w-auto"
+            >
+              Get an Free Service
+            </button>
+          </div>
+        </>
+      )}
     </form>
   )
 }
