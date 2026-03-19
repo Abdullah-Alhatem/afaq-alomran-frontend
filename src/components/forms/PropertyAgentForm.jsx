@@ -9,13 +9,13 @@ const defaultCardClassName =
   'rounded-[24px] border border-[#EBEBEB] bg-white p-5 shadow-[0_28px_80px_rgba(7,46,69,0.08)] sm:rounded-[28px] sm:p-8 lg:p-10'
 const contactCardClassName =
   'rounded-[16px] bg-white p-6 shadow-[4px_10px_30px_0px_rgba(0,0,0,0.03)] sm:p-8 lg:p-10'
-const labelClassName = 'text-base font-medium text-[#181818]'
-const inputClassName =
+export const propertyAgentLabelClassName = 'text-base font-medium text-[#181818]'
+export const propertyAgentInputClassName =
   'mt-3 h-14 w-full rounded-[12px] border border-[#D7D7D7] bg-[#ECF1F6] px-4 text-base text-[#5C5C5C] outline-none transition-colors duration-200 placeholder:text-[#9A9A9A] focus:border-primary-mid'
 const textareaClassName =
   'mt-3 min-h-[180px] w-full rounded-[12px] border border-[#D7D7D7] bg-[#ECF1F6] px-4 py-4 text-base text-[#5C5C5C] outline-none transition-colors duration-200 placeholder:text-[#9A9A9A] focus:border-primary-mid sm:min-h-[210px]'
 
-function CountryPrefixFlag() {
+export function CountryPrefixFlag() {
   return (
     <span
       aria-hidden="true"
@@ -105,9 +105,12 @@ function PropertyAgentForm({ variant = 'review', className }) {
           ) : null}
 
           <label className={cn('block', isContact ? 'mt-7' : '')}>
-            <span className={labelClassName}>Inquiry Type</span>
+            <span className={propertyAgentLabelClassName}>Inquiry Type</span>
             <div className="relative">
-              <select defaultValue="" className={cn(inputClassName, 'appearance-none pr-12')}>
+              <select
+                defaultValue=""
+                className={cn(propertyAgentInputClassName, 'appearance-none pr-12')}
+              >
                 <option value="" disabled>
                   Select your Inquiry
                 </option>
@@ -128,25 +131,29 @@ function PropertyAgentForm({ variant = 'review', className }) {
       {isReview ? (
         <div className="mt-7 grid gap-4 sm:mt-8 sm:gap-5 md:grid-cols-2">
           <label className="block">
-            <span className={labelClassName}>Name</span>
-            <input type="text" placeholder="Full name" className={inputClassName} />
+            <span className={propertyAgentLabelClassName}>Name</span>
+            <input type="text" placeholder="Full name" className={propertyAgentInputClassName} />
           </label>
 
           <label className="block">
-            <span className={labelClassName}>Email</span>
-            <input type="email" placeholder="hi@example.com" className={inputClassName} />
+            <span className={propertyAgentLabelClassName}>Email</span>
+            <input
+              type="email"
+              placeholder="hi@example.com"
+              className={propertyAgentInputClassName}
+            />
           </label>
         </div>
       ) : (
         <>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <label className="block">
-              <span className={labelClassName}>Name</span>
-              <input type="text" placeholder="Full name" className={inputClassName} />
+              <span className={propertyAgentLabelClassName}>Name</span>
+              <input type="text" placeholder="Full name" className={propertyAgentInputClassName} />
             </label>
 
             <label className="block">
-              <span className={labelClassName}>Phone Number</span>
+              <span className={propertyAgentLabelClassName}>Phone Number</span>
               <div className="mt-3 flex h-14 overflow-hidden rounded-[12px] border border-[#D7D7D7] bg-[#ECF1F6] transition-colors duration-200 focus-within:border-primary-mid">
                 <div className="flex shrink-0 items-center gap-2 border-r border-[#D7D7D7] px-4 text-[#5C5C5C]">
                   <CountryPrefixFlag />
@@ -163,14 +170,18 @@ function PropertyAgentForm({ variant = 'review', className }) {
           </div>
 
           <label className="mt-5 block">
-            <span className={labelClassName}>Email</span>
-            <input type="email" placeholder="hi@example.com" className={inputClassName} />
+            <span className={propertyAgentLabelClassName}>Email</span>
+            <input
+              type="email"
+              placeholder="hi@example.com"
+              className={propertyAgentInputClassName}
+            />
           </label>
         </>
       )}
 
       <label className="mt-5 block">
-        <span className={labelClassName}>{isReview ? 'Message' : 'Description'}</span>
+        <span className={propertyAgentLabelClassName}>{isReview ? 'Message' : 'Description'}</span>
         <textarea
           rows="6"
           placeholder={

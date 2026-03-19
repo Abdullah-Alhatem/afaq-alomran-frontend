@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom'
+import { Bell, CalendarDays, Heart, UserRound } from 'lucide-react'
 
 import { ACCOUNT_NAV_ITEMS } from '@/components/account/accountLayoutConfig'
 import { cn } from '@/lib/utils'
+
+const ACCOUNT_NAV_ICONS = {
+  'personal-info': UserRound,
+  appointments: CalendarDays,
+  'favorite-properties': Heart,
+  notifications: Bell,
+}
 
 function AccountTabsNav() {
   return (
@@ -9,30 +17,46 @@ function AccountTabsNav() {
       <div className="home-shell">
         <nav
           aria-label="My account sections"
-          className="flex flex-wrap items-center gap-x-7 gap-y-2 border-b border-[#E8EEF3]"
+          className="flex items-center justify-between gap-1 border-b border-[#E8EEF3] md:justify-start md:gap-x-12 lg:gap-x-16"
         >
-          {ACCOUNT_NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.key}
-              to={item.to}
-              className={({ isActive }) =>
-                cn(
-                  'inline-flex items-center gap-2 border-b-2 px-1 py-5 text-base font-medium transition-colors duration-200',
-                  isActive
-                    ? 'border-secondary-light text-secondary-light'
-                    : 'border-transparent text-[#181818] hover:text-secondary-light',
-                )
-              }
-            >
-              <span>{item.label}</span>
+          {ACCOUNT_NAV_ITEMS.map((item) => {
+            const Icon = ACCOUNT_NAV_ICONS[item.key]
 
-              {item.badgeCount ? (
-                <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-primary-mid px-1.5 text-[12px] font-bold leading-none text-white">
-                  {item.badgeCount}
+            return (
+              <NavLink
+                key={item.key}
+                to={item.to}
+                aria-label={item.label}
+                title={item.label}
+                className={({ isActive }) =>
+                  cn(
+                    'inline-flex min-w-0 flex-1 items-center justify-center gap-2 border-b-[3px] px-1 py-4 text-[17px] font-medium leading-none transition-colors duration-200 md:flex-none md:justify-start md:py-6 md:text-[19px]',
+                    isActive
+                      ? 'border-secondary-light text-secondary'
+                      : 'border-transparent text-[#181818] hover:text-secondary-light',
+                  )
+                }
+              >
+                <span className="relative md:hidden">
+                  <Icon aria-hidden="true" className="h-5 w-5" />
+
+                  {item.badgeCount ? (
+                    <span className="absolute -right-2 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-primary-mid px-1 text-[9px] font-bold leading-none text-white">
+                      {item.badgeCount}
+                    </span>
+                  ) : null}
                 </span>
-              ) : null}
-            </NavLink>
-          ))}
+
+                <span className="hidden md:inline">{item.label}</span>
+
+                {item.badgeCount ? (
+                  <span className="hidden h-7 min-w-7 items-center justify-center rounded-full bg-primary-mid px-1.5 text-[12px] font-bold leading-none text-white md:inline-flex">
+                    {item.badgeCount}
+                  </span>
+                ) : null}
+              </NavLink>
+            )
+          })}
         </nav>
       </div>
     </section>

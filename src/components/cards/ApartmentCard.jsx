@@ -22,63 +22,63 @@ export function ApartmentCard({
   return (
     <div
       className={cn(
-        'flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-28',
+        'flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6',
         'bg-[#ECF1F6] rounded-[16px] shadow-[2px_4px_16px_rgba(0,0,0,0.04)]',
-        'px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8 w-full md:max-w-[1472px]',
-        'md:min-h-[204px] overflow-hidden',
+        'w-full overflow-hidden px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8',
+        'lg:min-h-[204px]',
         className,
       )}
     >
       {/* Left Section: Image + Details */}
-      <div className="flex flex-row items-center gap-3 sm:gap-4 md:flex-none">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start lg:min-w-0 lg:flex-1">
         {/* Image */}
-        <div className="h-24 w-24 sm:h-[120px] sm:w-[120px] md:h-[140px] md:w-[140px] overflow-hidden rounded-[4px] flex-none">
+        <div className="h-[200px] w-full flex-none overflow-hidden rounded-[12px] sm:h-[120px] sm:w-[120px] md:h-[140px] md:w-[140px]">
           <img src={image} alt={title} className="h-full w-full object-cover" />
         </div>
 
         {/* Details */}
-        <div className="flex flex-col items-start gap-1 sm:gap-2 flex-1 sm:w-auto md:w-[275.34px]">
+        <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5 sm:gap-2 lg:max-w-[275px]">
           {/* Status Badge */}
-          <div className="flex flex-row items-center gap-0 w-fit h-[30px] bg-[#E7F3E8] rounded-[8px] px-2 py-1">
+          <div className="flex h-[30px] w-fit items-center rounded-[8px] bg-[#E7F3E8] px-2 py-1">
             <span className="text-xs sm:text-[14px] leading-[22px] font-normal text-[#3AC922]">
               For Sale
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="text-base sm:text-lg md:text-[24px] leading-tight sm:leading-[32px] font-semibold text-[#123E56] line-clamp-2 sm:line-clamp-none md:w-[275.34px]">
+          <h2 className="w-full text-[20px] leading-tight font-semibold text-[#123E56] sm:text-[22px] sm:leading-[30px] md:text-[24px] md:leading-[32px]">
             {title}
           </h2>
 
           {/* Location */}
-          <div className="flex flex-row items-center gap-1 md:w-[275.34px]">
-            <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-[#123E56] flex-shrink-0" />
-            <span className="text-xs sm:text-[14px] leading-[22px] font-normal text-[#5C5C5C] line-clamp-1">
+          <div className="flex w-full items-center gap-1">
+            <MapPin className="h-3 w-3 flex-shrink-0 text-[#123E56] sm:h-4 sm:w-4" />
+            <span className="line-clamp-2 text-xs leading-[20px] font-normal text-[#5C5C5C] sm:line-clamp-1 sm:text-[14px] sm:leading-[22px]">
               {location}
             </span>
           </div>
 
           {/* Specs */}
-          <div className="flex flex-row items-center gap-2 sm:gap-8 md:w-[249px]">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-x-6 lg:gap-x-8">
             {/* Area */}
-            <div className="flex flex-row items-center gap-1">
-              <Expand className="w-3 h-3 sm:w-4 sm:h-4 text-[#123E56] flex-shrink-0" />
+            <div className="flex items-center gap-1">
+              <Expand className="h-3 w-3 flex-shrink-0 text-[#123E56] sm:h-4 sm:w-4" />
               <span className="text-xs sm:text-[14px] leading-[22px] font-medium text-[#5C5C5C]">
                 {area}
               </span>
             </div>
 
             {/* Baths */}
-            <div className="flex flex-row items-center gap-1">
-              <Bath className="w-3 h-3 sm:w-4 sm:h-4 text-[#123E56] flex-shrink-0" />
+            <div className="flex items-center gap-1">
+              <Bath className="h-3 w-3 flex-shrink-0 text-[#123E56] sm:h-4 sm:w-4" />
               <span className="text-xs sm:text-[14px] leading-[22px] font-medium text-[#5C5C5C]">
                 {baths}
               </span>
             </div>
 
             {/* Beds */}
-            <div className="flex flex-row items-center gap-1">
-              <BedDouble className="w-3 h-3 sm:w-4 sm:h-4 text-[#123E56] flex-shrink-0" />
+            <div className="flex items-center gap-1">
+              <BedDouble className="h-3 w-3 flex-shrink-0 text-[#123E56] sm:h-4 sm:w-4" />
               <span className="text-xs sm:text-[14px] leading-[22px] font-medium text-[#5C5C5C]">
                 {beds}
               </span>
@@ -87,56 +87,56 @@ export function ApartmentCard({
         </div>
       </div>
 
-      {/* Middle Section: Price */}
-      <div className="flex flex-row md:flex-col justify-center items-start max-md:gap-2 h-16 sm:h-[62px] bg-[#F8F8F8] rounded-[8px] px-3 sm:px-4 py-2 flex-1 sm:flex-none sm:w-[132px]">
-        <span className="text-sm sm:text-[14px] leading-[22px] font-bold text-[#181818]">
-          Price
-        </span>
-        <span className="text-xl sm:text-[24px] leading-[24px] font-semibold text-[#DE8556]">
-          {formattedPrice}
-        </span>
-      </div>
-
-      {/* Middle Section: Date & Time */}
-      <div className="flex flex-row items-center gap-2 sm:gap-4 h-16 sm:h-[62px] bg-[#F8F8F8] rounded-[8px] px-3 sm:px-4 py-2 flex-1 sm:flex-none md:w-[249px]">
-        <div className="flex flex-col items-center md:items-start gap-0 flex-1">
-          <span className="text-xs sm:text-[14px] leading-[22px] font-bold text-[#181818]">
-            Date &amp; Time
-          </span>
-          <div className="flex flex-row items-center gap-1 flex-wrap">
-            <CalendarDays className="w-4 h-4 sm:w-6 sm:h-6 text-[#123E56] flex-shrink-0" />
-            <span className="text-xs sm:text-[14px] leading-[22px] font-bold text-[#123E56] truncate">
-              {dateLabel}
-            </span>
-            <span className="text-xs sm:text-[14px] leading-[22px] font-bold text-[#DE8556] flex-shrink-0">
-              {timeLabel}
+      <div className="flex flex-col gap-3 lg:flex-none xl:flex-row lg:items-center lg:gap-8">
+        <div className="grid gap-3 sm:grid-cols-2 lg:flex lg:gap-4">
+          {/* Middle Section: Price */}
+          <div className="flex min-h-[76px] flex-col justify-center gap-1 rounded-[12px] bg-[#F8F8F8] px-4 py-3 sm:min-h-[88px] lg:w-[132px]">
+            <span className="text-sm leading-[22px] font-bold text-[#181818]">Price</span>
+            <span className="text-[24px] leading-[26px] font-semibold text-[#DE8556]">
+              {formattedPrice}
             </span>
           </div>
+
+          {/* Middle Section: Date & Time */}
+          <div className="flex min-h-[76px] flex-col justify-center gap-1 rounded-[12px] bg-[#F8F8F8] px-4 py-3 sm:min-h-[88px] lg:w-[249px]">
+            <span className="text-sm leading-[22px] font-bold text-[#181818]">Date &amp; Time</span>
+            <div className="flex items-start gap-2">
+              <CalendarDays className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#123E56] sm:h-5 sm:w-5" />
+              <div className="flex min-w-0 flex-wrap items-center gap-x-1 gap-y-0.5">
+                <span className="text-xs leading-[20px] font-bold text-[#123E56] sm:text-[14px] sm:leading-[22px]">
+                  {dateLabel}
+                </span>
+                <span className="text-xs leading-[20px] font-bold text-[#DE8556] sm:text-[14px] sm:leading-[22px]">
+                  {timeLabel}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Right Section: Buttons */}
-      <div className="flex flex-row justify-end items-center gap-2 sm:gap-4 md:gap-8 h-12 sm:h-[48px] flex-none w-full md:w-[277px]">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="flex flex-row justify-center items-center flex-1 sm:flex-none h-12 sm:h-[48px] sm:w-[94px] rounded-[24px] border-2 border-[#FF4747] hover:bg-[#FF4747]/5 transition-colors"
-        >
-          <span className="text-sm sm:text-[16px] leading-[24px] font-bold text-[#FF4747]">
-            Cancel
-          </span>
-        </button>
+        {/* Right Section: Buttons */}
+        <div className="grid gap-3 sm:grid-cols-2 lg:flex lg:w-[277px] lg:justify-end lg:gap-4">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="flex h-12 w-full items-center justify-center rounded-[24px] border-2 border-[#FF4747] px-5 transition-colors hover:bg-[#FF4747]/5 lg:w-[94px]"
+          >
+            <span className="text-sm sm:text-[16px] leading-[24px] font-bold text-[#FF4747]">
+              Cancel
+            </span>
+          </button>
 
-        <button
-          type="button"
-          onClick={onOpenMap}
-          className="flex flex-row justify-center items-center gap-1 sm:gap-2 flex-1 sm:flex-none h-12 sm:h-[48px] sm:w-[151px] rounded-[24px] bg-[#123E56] hover:bg-[#0d2a38] transition-colors"
-        >
-          <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-white flex-shrink-0" />
-          <span className="text-sm sm:text-[16px] leading-[24px] font-bold text-white">
-            Open Map
-          </span>
-        </button>
+          <button
+            type="button"
+            onClick={onOpenMap}
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-[24px] bg-[#123E56] px-5 transition-colors hover:bg-[#0d2a38] lg:w-[151px]"
+          >
+            <MapPin className="h-4 w-4 flex-shrink-0 text-white sm:h-5 sm:w-5" />
+            <span className="text-sm sm:text-[16px] leading-[24px] font-bold text-white">
+              Open Map
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   )

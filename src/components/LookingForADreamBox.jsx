@@ -76,7 +76,7 @@ function LookingForADreamBox({ variant = 'default', customWidth, background = 'b
 
                   <Link
                     to="/properties"
-                    className="w-full shrink-0 whitespace-nowrap rounded-[18px] bg-secondary px-6 py-3 text-btn font-bold leading-[150%] text-secondary-foreground transition hover:bg-secondary-light lg:w-fit lg:rounded-xl"
+                    className="w-full text-center shrink-0 whitespace-nowrap rounded-[18px] bg-secondary px-6 py-3 text-btn font-bold leading-[150%] text-secondary-foreground transition hover:bg-secondary-light lg:w-fit lg:rounded-xl"
                   >
                     Explore Properties
                   </Link>
