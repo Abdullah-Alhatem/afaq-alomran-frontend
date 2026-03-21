@@ -247,3 +247,6 @@ Following these guidelines ensures:
 - Stable production builds
 - Clear collaboration
 - Reduced merge conflicts
+
+<!--  Git author Unknown must have access to the team abdullah-alhatem's projects on Vercel to create deployments.
+ Hobby teams do not support collaboration. Please upgrade to Pro to add team members. -->
