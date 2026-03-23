@@ -29,7 +29,7 @@ function FAQsAccordion({ items, defaultOpenIndex = 0 }) {
               isOpen
                 ? 'gap-4 bg-[#DAE6EF] shadow-[0px_5px_15px_0px_rgba(74,58,255,0.06)]'
                 : 'bg-[#FBFBFE] shadow-[0px_1px_4px_0px_rgba(25,33,61,0.06)]',
-              isOpen ? 'border-primary-light border-l-[6px]' : 'border-[#D5E4EC] border-l-[7px]',
+              isOpen ? 'border-primary-light border-s-[6px]' : 'border-[#D5E4EC] border-s-[7px]',
             ].join(' ')}
           >
             <button
@@ -38,7 +38,7 @@ function FAQsAccordion({ items, defaultOpenIndex = 0 }) {
               onClick={() => toggleItem(index)}
               aria-expanded={isOpen}
               aria-controls={panelId}
-              className="flex w-full items-center gap-2 text-left"
+              className="flex w-full items-center gap-2 text-start"
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full">
                 <ChevronDown
@@ -60,7 +60,7 @@ function FAQsAccordion({ items, defaultOpenIndex = 0 }) {
             </button>
 
             {isOpen && (
-              <div id={panelId} role="region" aria-labelledby={triggerId} className="w-full pl-11">
+              <div id={panelId} role="region" aria-labelledby={triggerId} className="w-full ps-11">
                 <p className="text-[16px] font-semibold leading-[24px] text-primary-light">
                   {item.answer}
                 </p>

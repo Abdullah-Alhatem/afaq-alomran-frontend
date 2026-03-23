@@ -5,7 +5,7 @@ function RadioItem({ checked, label, rightText, onSelect }) {
     <button
       type="button"
       onClick={onSelect}
-      className="w-full flex items-center justify-between gap-3 text-left"
+      className="w-full flex items-center justify-between gap-3 text-start"
     >
       <div className="flex items-center gap-3">
         <span

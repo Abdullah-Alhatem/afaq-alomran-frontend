@@ -38,7 +38,7 @@ const MainHeader = ({ isLoggedIn }) => {
             isRtl ? 'pl-2 pr-4 sm:pl-2 sm:pr-6' : 'pl-4 pr-2 sm:pl-6 sm:pr-2',
           )}
         >
-          <div className="flex w-full items-center justify-between gap-10 lg:w-auto lg:justify-normal">
+          <div className="flex w-full items-center justify-between gap-3 sm:gap-6 lg:w-auto lg:justify-normal lg:gap-10">
             <Logo imageClassName="h-11" logoSrc={logoForOtherPages} />
 
             <div className="flex items-center gap-3">
