@@ -1,10 +1,13 @@
 import { useId, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { faqItemsAll } from './faqItems'
+import { useTranslation } from 'react-i18next'
+import { getFaqItemsAll } from './faqItems'
 
-function FAQsAccordion({ items = faqItemsAll, defaultOpenIndex = 0 }) {
+function FAQsAccordion({ items, defaultOpenIndex = 0 }) {
+  const { t } = useTranslation()
   const baseId = useId().replace(/[^a-zA-Z0-9-_]/g, '')
   const [openIndex, setOpenIndex] = useState(defaultOpenIndex)
+  const resolvedItems = items ?? getFaqItemsAll(t)
 
   const toggleItem = (index) => {
     setOpenIndex((currentIndex) => (currentIndex === index ? -1 : index))
@@ -12,7 +15,7 @@ function FAQsAccordion({ items = faqItemsAll, defaultOpenIndex = 0 }) {
 
   return (
     <div className="flex w-full flex-col gap-4">
-      {items.map((item, index) => {
+      {resolvedItems.map((item, index) => {
         const isOpen = openIndex === index
         const triggerId = `faqs-${baseId}-trigger-${index}`
         const panelId = `faqs-${baseId}-panel-${index}`

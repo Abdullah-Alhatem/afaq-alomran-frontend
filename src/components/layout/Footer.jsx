@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import callIcon from '../../assets/Footer/Call.png'
 import fbIcon from '../../assets/Footer/FB.png'
 import igIcon from '../../assets/Footer/IG.png'
@@ -7,55 +8,88 @@ import locationIcon from '../../assets/Footer/location (3) 1.png'
 import messageIcon from '../../assets/Footer/Message.png'
 import sendIcon from '../../assets/Footer/Button.png'
 import waIcon from '../../assets/Footer/WA.png'
+import { useNewsletterSubscriptionMutation, useSiteSettingsQuery } from '@/lib/fake-api/hooks'
 
 function Footer() {
+  const { t } = useTranslation()
+  const { data: siteSettings } = useSiteSettingsQuery()
+  const newsletterMutation = useNewsletterSubscriptionMutation()
+
   const companyLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/about', label: 'About' },
-    { to: '/properties', label: 'Shop' },
-    { to: '/wishlist', label: 'Wishlist' },
-    { to: '/portfolio', label: 'Portfolio' },
+    { to: '/', label: t('footer.companyLinks.home') },
+    { to: '/about', label: t('footer.companyLinks.about') },
+    { to: '/properties', label: t('footer.companyLinks.projects') },
+    { to: '/agents', label: t('footer.companyLinks.agents') },
+    { to: '/portfolios', label: t('footer.companyLinks.portfolios') },
   ]
 
   const serviceLinks = [
-    { to: '/sign-in', label: 'Login' },
-    { to: '/sign-up', label: 'Register' },
-    { to: '/contact-us', label: 'Location' },
-    { to: '/faqs', label: 'FAQ' },
-    { to: '/news', label: 'News' },
+    { to: '/contact-us', label: t('footer.serviceLinks.contact') },
+    { to: '/faqs', label: t('footer.serviceLinks.faqs') },
+    { to: '/map', label: t('footer.serviceLinks.map') },
+    { to: '/sign-in', label: t('footer.serviceLinks.login') },
+    { to: '/sign-up', label: t('footer.serviceLinks.register') },
   ]
 
   const socialLinks = [
-    { href: '#', icon: fbIcon, label: 'Facebook' },
-    { href: '#', icon: igIcon, label: 'Instagram' },
-    { href: '#', icon: waIcon, label: 'WhatsApp' },
+    {
+      href: siteSettings.socialLinks.facebook,
+      icon: fbIcon,
+      label: t('agents.social.facebook'),
+    },
+    {
+      href: siteSettings.socialLinks.instagram,
+      icon: igIcon,
+      label: t('agents.social.instagram'),
+    },
+    {
+      href: siteSettings.socialLinks.whatsapp,
+      icon: waIcon,
+      label: t('agents.social.whatsapp'),
+    },
   ]
 
   const contactItems = [
     {
       icon: callIcon,
-      label: 'Phone',
+      label: t('footer.contact.phone'),
       content: (
-        <a href="tel:+9647700000000" className="transition-colors hover:text-white">
-          (208) 555-0112
+        <a
+          href={siteSettings.contact.footerPhoneHref}
+          className="transition-colors hover:text-white"
+        >
+          {siteSettings.contact.footerPhoneLabel}
         </a>
       ),
     },
     {
       icon: messageIcon,
-      label: 'Email',
+      label: t('footer.contact.email'),
       content: (
-        <a href="mailto:homeq.example@gmail.com" className="transition-colors hover:text-white">
-          homeq.example@gmail.com
+        <a
+          href={siteSettings.contact.footerEmailHref}
+          className="transition-colors hover:text-white"
+        >
+          {siteSettings.contact.footerEmailLabel}
         </a>
       ),
     },
     {
       icon: locationIcon,
-      label: 'Address',
-      content: <p>3517 W. Gray St. Utica, Pennsylvania 57867</p>,
+      label: t('footer.contact.address'),
+      content: <p>{siteSettings.contact.footerAddress}</p>,
     },
   ]
+
+  async function handleNewsletterSubmit(event) {
+    event.preventDefault()
+
+    const formData = new FormData(event.currentTarget)
+    await newsletterMutation.mutateAsync({
+      email: formData.get('email'),
+    })
+    event.currentTarget.reset()
+  }
 
   return (
     <footer className="bg-primary-mid text-white shadow-[0px_4px_200px_0px_rgba(232,249,247,0.2)]">
@@ -66,9 +100,7 @@ function Footer() {
               <img src={footerLogo} alt="AFFAQ" className="h-[72px] w-auto object-contain" />
             </Link>
 
-            <p className="mt-2 text-body-sm text-white/95">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-            </p>
+            <p className="mt-2 text-body-sm text-white/95">{t('footer.description')}</p>
 
             <div className="mt-1 space-y-[6px]">
               {contactItems.map((item) => (
@@ -89,7 +121,9 @@ function Footer() {
           </div>
 
           <nav className="w-[90px]">
-            <h3 className="text-body font-bold text-secondary-light">Company</h3>
+            <h3 className="text-body font-bold text-secondary-light">
+              {t('footer.titles.company')}
+            </h3>
             <div className="mt-4 flex flex-col gap-4">
               {companyLinks.map((item) => (
                 <Link
@@ -104,7 +138,9 @@ function Footer() {
           </nav>
 
           <nav className="w-[90px]">
-            <h3 className="text-body font-bold text-secondary-light">Service</h3>
+            <h3 className="text-body font-bold text-secondary-light">
+              {t('footer.titles.service')}
+            </h3>
             <div className="mt-4 flex flex-col gap-4">
               {serviceLinks.map((item) => (
                 <Link
@@ -119,43 +155,49 @@ function Footer() {
           </nav>
 
           <div className="max-w-[264px]">
-            <h3 className="text-body font-bold text-secondary-light">Newsletter</h3>
-            <p className="mt-3 text-caption text-white">
-              Subscribe to our newsletter and receive updates via email
-            </p>
+            <h3 className="text-body font-bold text-secondary-light">
+              {t('footer.titles.newsletter')}
+            </h3>
+            <p className="mt-3 text-caption text-white">{t('footer.newsletterDescription')}</p>
 
-            <form className="mt-2">
+            <form className="mt-2" onSubmit={handleNewsletterSubmit}>
               <label htmlFor="newsletter-email" className="sr-only">
-                Email Address
+                {t('common.fields.newsletterPlaceholder')}
               </label>
               <div className="flex items-center gap-2">
                 <input
                   id="newsletter-email"
+                  name="email"
                   type="email"
-                  placeholder="Email Address"
+                  placeholder={t('common.fields.newsletterPlaceholder')}
                   className="h-10 w-full rounded-sm border border-grey-stroke bg-transparent px-[15px] text-body-sm text-white outline-none placeholder:text-white/95"
                 />
                 <button
                   type="submit"
-                  aria-label="Send"
+                  disabled={newsletterMutation.isPending}
+                  aria-label={t('footer.send')}
                   className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-secondary-light transition-colors hover:bg-secondary"
                 >
                   <img
                     src={sendIcon}
                     alt=""
                     aria-hidden="true"
-                    className="w-full h-full object-contain"
+                    className="h-full w-full object-contain"
                   />
                 </button>
               </div>
             </form>
 
-            <p className="mt-4 text-label font-semibold text-secondary-light">Social Account</p>
+            <p className="mt-4 text-label font-semibold text-secondary-light">
+              {t('footer.titles.socialAccount')}
+            </p>
             <div className="mt-4 flex items-center gap-3">
               {socialLinks.map((link) => (
-                <Link
+                <a
                   key={link.label}
-                  to={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={link.label}
                   className="inline-flex h-6 w-6 items-center justify-center transition-opacity hover:opacity-80"
                 >
@@ -165,7 +207,7 @@ function Footer() {
                     aria-hidden="true"
                     className="h-6 w-6 object-contain"
                   />
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -173,7 +215,7 @@ function Footer() {
 
         <div className="mt-12 border-t-2 border-secondary-light pt-6">
           <p className="text-center text-body text-white/95">
-            ©{new Date().getFullYear()} Afaaq. All rights reserved
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

@@ -1,16 +1,13 @@
 import { useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { cn } from '@/lib/utils'
 
-function VideoPlayer({
-  src,
-  poster,
-  containerClassName,
-  videoClassName,
-  playButtonLabel = 'Play video',
-}) {
+function VideoPlayer({ src, poster, containerClassName, videoClassName, playButtonLabel }) {
+  const { t } = useTranslation()
   const videoRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const resolvedPlayButtonLabel = playButtonLabel ?? t('videoPlayer.play')
 
   const handlePlayVideo = async () => {
     const video = videoRef.current
@@ -37,13 +34,13 @@ function VideoPlayer({
         onPause={() => setIsPlaying(false)}
         onEnded={() => setIsPlaying(false)}
       >
-        Your browser does not support the video tag.
+        {t('videoPlayer.unsupported')}
       </video>
 
       {!isPlaying && (
         <button
           type="button"
-          aria-label={playButtonLabel}
+          aria-label={resolvedPlayButtonLabel}
           onClick={handlePlayVideo}
           className="absolute left-1/2 top-1/2 inline-flex h-[64px] w-[64px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#d9d9d9] p-[6px] shadow-xl transition-transform duration-200 hover:scale-105 md:h-[75px] md:w-[75px] md:p-[8px]"
         >

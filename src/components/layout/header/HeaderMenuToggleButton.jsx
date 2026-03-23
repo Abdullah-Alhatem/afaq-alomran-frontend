@@ -1,9 +1,31 @@
 import menuToggler from '../../../assets/MenuToggler/MenuTogler.png'
+import { useTranslation } from 'react-i18next'
 
-const HeaderMenuToggleButton = ({ onClick, className = '' }) => (
-  <button type="button" className={className} onClick={onClick} aria-label="Open menu">
-    <img src={menuToggler} alt="" aria-hidden="true" className="object-contain" />
-  </button>
-)
+import { cn } from '@/lib/utils'
+
+const HeaderMenuToggleButton = ({ onClick, className = '' }) => {
+  const { i18n, t } = useTranslation()
+  const isRtl = i18n.dir() === 'rtl'
+
+  return (
+    <button
+      type="button"
+      className={cn(
+        'inline-flex shrink-0 items-center justify-center lg:-mx-3',
+        isRtl && 'order-last',
+        className,
+      )}
+      onClick={onClick}
+      aria-label={t('common.menu')}
+    >
+      <img
+        src={menuToggler}
+        alt=""
+        aria-hidden="true"
+        className={`h-auto w-auto object-contain ${isRtl ? '[transform:scaleX(-1)]' : ''}`}
+      />
+    </button>
+  )
+}
 
 export default HeaderMenuToggleButton

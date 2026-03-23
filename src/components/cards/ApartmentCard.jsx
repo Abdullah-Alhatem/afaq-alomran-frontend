@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import apartmentCardImage from '@/assets/images/apartmentCard.png'
 import { Bath, BedDouble, CalendarDays, Expand, MapPin } from 'lucide-react'
@@ -17,6 +18,7 @@ export function ApartmentCard({
   onCancel,
   onOpenMap,
 }) {
+  const { t } = useTranslation()
   const formattedPrice = typeof price === 'number' ? `$${price.toLocaleString()}` : price
 
   return (
@@ -41,7 +43,7 @@ export function ApartmentCard({
           {/* Status Badge */}
           <div className="flex h-[30px] w-fit items-center rounded-[8px] bg-[#E7F3E8] px-2 py-1">
             <span className="text-xs sm:text-[14px] leading-[22px] font-normal text-[#3AC922]">
-              For Sale
+              {t('common.status.forSale')}
             </span>
           </div>
 
@@ -91,7 +93,9 @@ export function ApartmentCard({
         <div className="grid gap-3 sm:grid-cols-2 lg:flex lg:gap-4">
           {/* Middle Section: Price */}
           <div className="flex min-h-[76px] flex-col justify-center gap-1 rounded-[12px] bg-[#F8F8F8] px-4 py-3 sm:min-h-[88px] lg:w-[132px]">
-            <span className="text-sm leading-[22px] font-bold text-[#181818]">Price</span>
+            <span className="text-sm leading-[22px] font-bold text-[#181818]">
+              {t('common.labels.price')}
+            </span>
             <span className="text-[24px] leading-[26px] font-semibold text-[#DE8556]">
               {formattedPrice}
             </span>
@@ -99,7 +103,9 @@ export function ApartmentCard({
 
           {/* Middle Section: Date & Time */}
           <div className="flex min-h-[76px] flex-col justify-center gap-1 rounded-[12px] bg-[#F8F8F8] px-4 py-3 sm:min-h-[88px] lg:w-[249px]">
-            <span className="text-sm leading-[22px] font-bold text-[#181818]">Date &amp; Time</span>
+            <span className="text-sm leading-[22px] font-bold text-[#181818]">
+              {t('common.labels.dateTime')}
+            </span>
             <div className="flex items-start gap-2">
               <CalendarDays className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#123E56] sm:h-5 sm:w-5" />
               <div className="flex min-w-0 flex-wrap items-center gap-x-1 gap-y-0.5">
@@ -122,7 +128,7 @@ export function ApartmentCard({
             className="flex h-12 w-full items-center justify-center rounded-[24px] border-2 border-[#FF4747] px-5 transition-colors hover:bg-[#FF4747]/5 lg:w-[94px]"
           >
             <span className="text-sm sm:text-[16px] leading-[24px] font-bold text-[#FF4747]">
-              Cancel
+              {t('common.buttons.cancel')}
             </span>
           </button>
 
@@ -133,7 +139,7 @@ export function ApartmentCard({
           >
             <MapPin className="h-4 w-4 flex-shrink-0 text-white sm:h-5 sm:w-5" />
             <span className="text-sm sm:text-[16px] leading-[24px] font-bold text-white">
-              Open Map
+              {t('common.buttons.openMap')}
             </span>
           </button>
         </div>

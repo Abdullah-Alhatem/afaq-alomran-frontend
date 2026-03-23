@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const MainHeaderCtaLinks = ({ isLoggedIn, mobile = false, onActionClick }) => {
+  const { t } = useTranslation()
   const loginClass = mobile
     ? 'h-11 rounded-lg border border-primary-mid text-primary-mid font-bold inline-flex items-center justify-center hover:bg-primary-mid hover:text-white transition-all duration-200'
     : 'h-12 px-6 rounded-lg border-2 border-white text-white font-bold text-body inline-flex items-center justify-center hover:bg-white hover:text-primary-mid transition-all duration-200'
@@ -18,7 +20,7 @@ const MainHeaderCtaLinks = ({ isLoggedIn, mobile = false, onActionClick }) => {
           className={loginClass}
           id={mobile ? undefined : 'login-button-lg'}
         >
-          Log in
+          {t('common.buttons.logIn')}
         </Link>
       )}
 
@@ -28,7 +30,7 @@ const MainHeaderCtaLinks = ({ isLoggedIn, mobile = false, onActionClick }) => {
         className={exploreClass}
         id={mobile ? undefined : 'explore-button-lg'}
       >
-        Explore Properties
+        {t('common.buttons.exploreProperties')}
       </Link>
     </>
   )

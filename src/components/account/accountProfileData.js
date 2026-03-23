@@ -11,35 +11,19 @@ export const DEFAULT_ACCOUNT_PROFILE = {
   postcode: '',
 }
 
-export const ACCOUNT_PROFILE_DETAILS = [
-  { key: 'mobile', label: 'Mobile' },
-  { key: 'email', label: 'Email' },
-  { key: 'dateOfBirth', label: 'Date of birth' },
-  { key: 'country', label: 'Country' },
-  { key: 'houseNumber', label: 'House Number' },
-  { key: 'streetAddress', label: 'Street Address' },
-  { key: 'floor', label: 'Floor' },
-  { key: 'place', label: 'Place' },
-  { key: 'postcode', label: 'Postcode' },
-]
-
-export const ACCOUNT_PROFILE_FORM_FIELDS = [
-  { key: 'fullName', label: 'Full Name', type: 'text', autoComplete: 'name' },
-  { key: 'mobile', label: 'Mobile', type: 'tel', autoComplete: 'tel' },
-  { key: 'email', label: 'Email', type: 'email', autoComplete: 'email' },
-  { key: 'dateOfBirth', label: 'Date of Birth', type: 'date' },
-  { key: 'country', label: 'Country', type: 'text', autoComplete: 'country-name' },
-  { key: 'houseNumber', label: 'House Number', type: 'text', autoComplete: 'address-line1' },
-  {
-    key: 'streetAddress',
-    label: 'Street Address',
-    type: 'text',
-    autoComplete: 'street-address',
-  },
-  { key: 'floor', label: 'Floor', type: 'text' },
-  { key: 'place', label: 'Place', type: 'text', autoComplete: 'address-level2' },
-  { key: 'postcode', label: 'Postcode', type: 'text', autoComplete: 'postal-code' },
-]
+export function getAccountProfileDetails(t) {
+  return [
+    { key: 'mobile', label: t('account.profile.fields.mobile') },
+    { key: 'email', label: t('account.profile.fields.email') },
+    { key: 'dateOfBirth', label: t('account.profile.fields.dateOfBirth') },
+    { key: 'country', label: t('account.profile.fields.country') },
+    { key: 'houseNumber', label: t('account.profile.fields.houseNumber') },
+    { key: 'streetAddress', label: t('account.profile.fields.streetAddress') },
+    { key: 'floor', label: t('account.profile.fields.floor') },
+    { key: 'place', label: t('account.profile.fields.place') },
+    { key: 'postcode', label: t('account.profile.fields.postcode') },
+  ]
+}
 
 export function formatAccountProfileValue(key, value) {
   if (!value) {

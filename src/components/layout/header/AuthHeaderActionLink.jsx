@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const AuthHeaderActionLink = ({ isSignUp, mobile = false, onClick }) => {
+  const { t } = useTranslation()
   const action = isSignUp
     ? {
         to: '/sign-in',
-        label: 'Log In',
+        label: t('header.authActions.logIn'),
         desktopId: 'login-button',
         mobileId: 'mobile-login-button',
       }
     : {
         to: '/sign-up',
-        label: 'Sign Up',
+        label: t('header.authActions.signUp'),
         desktopId: 'signup-button',
         mobileId: 'mobile-signup-button',
       }

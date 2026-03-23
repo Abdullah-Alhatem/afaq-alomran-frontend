@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { ACCOUNT_PAGE_HANDLES } from '../components/account/accountLayoutConfig'
+import { ACCOUNT_PAGE_KEYS } from '../components/account/accountLayoutConfig'
 
 // Layouts
 import MainLayout from '../layouts/MainLayout'
@@ -76,19 +76,19 @@ export const router = createBrowserRouter([
       {
         path: '/my-account',
         element: <AccountLayout />,
-        handle: { accountPage: ACCOUNT_PAGE_HANDLES.personalInfo },
+        handle: { accountPageKey: ACCOUNT_PAGE_KEYS.personalInfo },
         children: [
           { index: true, element: <MyAccount /> },
 
           {
             path: 'personal-info',
-            handle: { accountPage: ACCOUNT_PAGE_HANDLES.personalInfo },
+            handle: { accountPageKey: ACCOUNT_PAGE_KEYS.personalInfo },
             children: [
               { index: true, element: <ShowInfo /> },
               {
                 path: 'edit',
                 element: <EditProfile />,
-                handle: { accountPage: ACCOUNT_PAGE_HANDLES.editProfile },
+                handle: { accountPageKey: ACCOUNT_PAGE_KEYS.editProfile },
               },
             ],
           },
@@ -96,17 +96,17 @@ export const router = createBrowserRouter([
           {
             path: 'appointments',
             element: <Appointments />,
-            handle: { accountPage: ACCOUNT_PAGE_HANDLES.appointments },
+            handle: { accountPageKey: ACCOUNT_PAGE_KEYS.appointments },
           },
           {
             path: 'favorite-properties',
             element: <FavoriteProperties />,
-            handle: { accountPage: ACCOUNT_PAGE_HANDLES.favoriteProperties },
+            handle: { accountPageKey: ACCOUNT_PAGE_KEYS.favoriteProperties },
           },
           {
             path: 'notifications',
             element: <Notifications />,
-            handle: { accountPage: ACCOUNT_PAGE_HANDLES.notifications },
+            handle: { accountPageKey: ACCOUNT_PAGE_KEYS.notifications },
           },
         ],
       },
