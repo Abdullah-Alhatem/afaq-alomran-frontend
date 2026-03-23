@@ -126,7 +126,7 @@ export const fakeDb = {
       footerEmailLabel: 'homeq.example@gmail.com',
       footerEmailHref: 'mailto:homeq.example@gmail.com',
       contactAddress: 'Damascus, Syria',
-      footerAddress: '3517 W. Gray St. Utica, Pennsylvania 57867',
+      footerAddress: 'Damascus, Syria',
     },
     mapEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18429.444688130417!2d36.2766021818303!3d33.50641459414196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1518e1005eaa110f%3A0xf57a927322ed1e08!2zRGlnaXQt2K_Zitis2Ko!5e0!3m2!1sar!2sus!4v1773839074688!5m2!1sar!2sus',
