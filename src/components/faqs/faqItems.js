@@ -1,1 +1,1 @@
-export { faqItemsAll, faqItemsPreview } from '@/data/faqItems'
+export { getFaqItemsAll, getFaqItemsPreview } from '@/data/faqItems'

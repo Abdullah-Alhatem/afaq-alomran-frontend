@@ -1,23 +1,34 @@
 import homePageImage from '@/assets/images/homePage.png'
 import orangeLine from '@/assets/icons/arrow in hero.svg'
+import { useSiteSettingsQuery } from '@/lib/fake-api/hooks'
+import { cn } from '@/lib/utils'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-const stats = [
-  { value: '1500', label: 'Premium Products' },
-  { value: '324k', label: 'Happy Customers' },
-  { value: '1200', label: 'Award Winning' },
-]
-
 function HeroSection() {
+  const { i18n, t } = useTranslation()
+  const isRtl = i18n.dir() === 'rtl'
+  const { data: siteSettings } = useSiteSettingsQuery()
+  const translatedStats = t('home.hero.stats', { returnObjects: true })
+  const stats = siteSettings.homeHeroStats.map((item, index) => ({
+    ...item,
+    label: translatedStats[index]?.label ?? '',
+  }))
+
   return (
     <section className="overflow-hidden bg-primary-mid">
       <div className="home-shell relative pt-5 text-white lg:min-h-[720px] lg:pt-20">
-        <div className="max-w-[768px] space-y-6 lg:max-w-[calc(100%-520px)] lg:space-y-10 xl:max-w-[calc(100%-620px)] 2xl:max-w-[786px]">
+        <div
+          className={cn(
+            'max-w-[768px] space-y-6 lg:max-w-[calc(100%-520px)] lg:space-y-10 xl:max-w-[calc(100%-620px)] 2xl:max-w-[786px]',
+            isRtl && 'lg:ml-auto',
+          )}
+        >
           <div className="space-y-4">
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-[58px] lg:leading-[170%]">
-              Find The Perfect Place to Live With your{' '}
+              {t('home.hero.titlePrefix')}{' '}
               <span className="text-secondary-light relative">
-                Family
+                {t('home.hero.titleHighlight')}
                 <img
                   src={orangeLine}
                   alt=""
@@ -29,8 +40,7 @@ function HeroSection() {
           </div>
 
           <p className="text-base text-white/90 sm:text-[18px] leading-7">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
-            consequat duis enim velit mollit. Exercitation veni.
+            {t('home.hero.description')}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 py-6">
@@ -40,14 +50,14 @@ function HeroSection() {
                 'h-12 px-5 rounded-lg bg-secondary-light text-white font-bold text-body inline-flex items-center justify-center hover:bg-secondary-lighter transition-all duration-200'
               }
             >
-              Explore Properties
+              {t('common.buttons.exploreProperties')}
             </Link>
             <Link
               className={
                 'h-12 px-6 rounded-lg border-2 border-white text-white font-bold text-body inline-flex items-center justify-center hover:bg-white hover:text-primary-mid transition-all duration-200'
               }
             >
-              Learn More
+              {t('common.buttons.learnMore')}
             </Link>
           </div>
 
@@ -64,11 +74,18 @@ function HeroSection() {
           </div>
         </div>
 
-        <div className="pt-6 lg:pl-16 lg:absolute lg:bottom-0 lg:right-[calc((100vw-100%)/-2)] lg:w-[min(52vw,892px)] lg:pt-0">
+        <div
+          className={cn(
+            'pt-6 lg:absolute lg:bottom-0 lg:w-[min(52vw,892px)] lg:pt-0',
+            isRtl
+              ? 'lg:left-[calc((100vw-100%)/-2)] lg:pr-16'
+              : 'lg:right-[calc((100vw-100%)/-2)] lg:pl-16',
+          )}
+        >
           <div className="mx-auto w-full lg:mt-auto lg:min-w-[500px] lg:max-w-[892px] lg:mx-0 lg:flex-1">
             <img
               src={homePageImage}
-              alt="Modern family house exterior"
+              alt={t('home.hero.imageAlt')}
               className="h-auto w-full object-contain"
             />
           </div>

@@ -4,25 +4,11 @@ import transparentSalesProcessIcon from '@/assets/icons/transparentSalesProcessI
 import aboutUs1 from '@/assets/AboutUsHero/aboutus1.png'
 import aboutUs2 from '@/assets/AboutUsHero/aboutus2.png'
 import aboutUs3 from '@/assets/AboutUsHero/aboutus3.png'
+import { useTranslation } from 'react-i18next'
 
 import React from 'react'
 
-const featureCards = [
-  {
-    title: 'Smart Project Execution',
-    description:
-      'We develop and manage residential projects with precision, quality, and long-term value.',
-    icon: smartProjectExecutionIcon,
-    iconAlt: 'Smart Project Execution icon',
-  },
-  {
-    title: 'Transparent Sales Process',
-    description:
-      'From first inquiry to final handover, every step is clear, structured, and client-focused.',
-    icon: transparentSalesProcessIcon,
-    iconAlt: 'Transparent Sales Process icon',
-  },
-]
+const featureCardIcons = [smartProjectExecutionIcon, transparentSalesProcessIcon]
 
 const imageFrameClass =
   "relative rounded-[32px] before:pointer-events-none before:absolute before:inset-[-14px] before:-z-10 before:rounded-[42px] before:bg-black/60 before:blur-[24px] before:content-[''] shadow-xl sm:rounded-[38px] sm:before:inset-[-16px] sm:before:rounded-[48px] sm:before:blur-[28px] xl:rounded-[56px] xl:before:inset-[-18px] xl:before:rounded-[56px] xl:before:blur-[30px]"
@@ -30,20 +16,28 @@ const imageFrameClass =
 const imageInnerClass = 'overflow-hidden rounded-[24px] sm:rounded-[28px] xl:rounded-[40px]'
 
 function AboutHeroSection() {
+  const { t } = useTranslation()
+  const featureCards = t('aboutPage.hero.featureCards', { returnObjects: true }).map(
+    (card, index) => ({
+      ...card,
+      icon: featureCardIcons[index],
+    }),
+  )
+
   return (
     <section className="bg-[#EEF4FA] px-5 py-12 sm:px-6 sm:py-14 md:px-10 md:py-16 xl:px-16 xl:py-[6.2rem]">
       <div className="mx-auto grid w-full max-w-[1608px] gap-12 xl:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] xl:items-start xl:gap-16">
         <div className="max-w-[790px] xl:pt-1">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-[#D76838] sm:mb-6 sm:text-base md:text-[1.05rem]">
-            Who Are We
+            {t('aboutPage.hero.eyebrow')}
           </p>
 
           <h1 className="max-w-[768px] text-[clamp(2.35rem,6vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-[#123E56] sm:leading-[1.12] xl:leading-[1.18]">
-            <span className="block">Assisting individuals in locating</span>
+            <span className="block">{t('aboutPage.hero.lineOne')}</span>
             <span className="relative mt-3 inline-block sm:mt-4">
-              the appropriate{' '}
+              {t('aboutPage.hero.lineTwoPrefix')}{' '}
               <span className="relative inline-block">
-                real estate.
+                {t('aboutPage.hero.lineTwoHighlight')}
                 <img
                   src={arrowInHero}
                   alt=""
@@ -55,8 +49,7 @@ function AboutHeroSection() {
           </h1>
 
           <p className="mt-5 max-w-[680px] text-base leading-8 text-[#5C5C5C] sm:text-lg sm:leading-9 lg:mt-7 lg:text-[1.35rem] lg:leading-[2.1]">
-            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
-            consequat duis enim velit mollit. Exercitation veni.
+            {t('aboutPage.hero.description')}
           </p>
 
           <div className="mt-8 max-w-[720px] space-y-5 sm:mt-10 sm:space-y-6 lg:mt-11 lg:space-y-7">
@@ -67,7 +60,8 @@ function AboutHeroSection() {
               >
                 <img
                   src={card.icon}
-                  alt={card.iconAlt}
+                  alt=""
+                  aria-hidden="true"
                   className="h-16 w-16 shrink-0 sm:h-[74px] sm:w-[74px] md:h-[84px] md:w-[84px]"
                 />
 
@@ -90,7 +84,7 @@ function AboutHeroSection() {
               <div className={imageInnerClass}>
                 <img
                   src={aboutUs1}
-                  alt="Modern property exterior"
+                  alt={t('aboutPage.hero.images.primaryAlt')}
                   className="h-[360px] w-full object-cover object-center sm:h-[430px] md:h-[520px] lg:h-[620px] xl:h-[740px]"
                 />
               </div>
@@ -102,7 +96,7 @@ function AboutHeroSection() {
               <div className={imageInnerClass}>
                 <img
                   src={aboutUs2}
-                  alt="Elegant bedroom interior"
+                  alt={t('aboutPage.hero.images.secondaryAlt')}
                   className="h-[240px] w-full object-cover object-[center_35%] sm:h-[260px] md:h-[300px] xl:h-[420px]"
                 />
               </div>
@@ -112,7 +106,7 @@ function AboutHeroSection() {
               <div className={imageInnerClass}>
                 <img
                   src={aboutUs3}
-                  alt="Stylish living room interior"
+                  alt={t('aboutPage.hero.images.tertiaryAlt')}
                   className="h-[220px] w-full object-cover object-center sm:h-[240px] md:h-[280px] xl:h-[260px]"
                 />
               </div>

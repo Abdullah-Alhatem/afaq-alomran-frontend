@@ -1,14 +1,16 @@
 import CoverSection from '@/components/CoverSection'
 import AgentInquirySection from '@/components/agents/AgentInquirySection'
 import AgentCard from '@/components/cards/AgentCard'
-import { agentDetailsItems, agentSocialLinks } from '@/data/agents'
+import { useAgentDetailsQuery } from '@/lib/fake-api/hooks'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import NotFound from '../NotFound'
 import LookingForADreamBox from '@/components/LookingForADreamBox'
 
 function AgentDetails() {
+  const { t } = useTranslation()
   const { agentId } = useParams()
-  const agent = agentDetailsItems.find((item) => item.id === agentId)
+  const { data: agent } = useAgentDetailsQuery(agentId)
 
   if (!agent) {
     return <NotFound />
@@ -16,7 +18,10 @@ function AgentDetails() {
 
   return (
     <>
-      <CoverSection title="Agent Details" currentPage="Agent Details" />
+      <CoverSection
+        title={t('agents.detail.pageTitle')}
+        currentPage={t('agents.detail.currentPage')}
+      />
       <section className="bg-[#F8F8F8] py-12 md:py-16 lg:py-20 xl:py-24">
         <div className="home-shell">
           <div className="grid gap-10 lg:grid-cols-[minmax(280px,300px)_minmax(0,1fr)] lg:items-start lg:gap-12 xl:gap-16">
@@ -25,7 +30,7 @@ function AgentDetails() {
               alt={agent.alt}
               name={agent.name}
               role={agent.role}
-              socialLinks={agentSocialLinks}
+              socialLinks={agent.socialLinks}
               className="max-w-[298px] lg:mx-0"
             />
 
@@ -50,7 +55,7 @@ function AgentDetails() {
           </div>
         </div>
       </section>
-      <AgentInquirySection />
+      <AgentInquirySection image={agent.detailImage} />
       <LookingForADreamBox background="bg-white" />
     </>
   )

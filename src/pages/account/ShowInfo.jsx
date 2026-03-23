@@ -1,17 +1,20 @@
 import { UserRound } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import {
-  ACCOUNT_PROFILE_DETAILS,
   DEFAULT_ACCOUNT_PROFILE,
   formatAccountProfileValue,
+  getAccountProfileDetails,
 } from '@/components/account/accountProfileData'
+import { useAccountProfileQuery } from '@/lib/fake-api/hooks'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import useAccountProfileStore from '@/stores/useAccountProfileStore'
 
 function ShowInfo() {
-  const profile = useAccountProfileStore((state) => state.profile)
+  const { t } = useTranslation()
+  const { data: profile = DEFAULT_ACCOUNT_PROFILE } = useAccountProfileQuery()
   const displayName = profile.fullName || DEFAULT_ACCOUNT_PROFILE.fullName
+  const accountProfileDetails = getAccountProfileDetails(t)
 
   return (
     <section className="grid gap-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-16">
@@ -31,14 +34,14 @@ function ShowInfo() {
             to="edit"
             className="inline-flex min-h-[54px] items-center justify-center rounded-full bg-primary-mid px-6 text-btn font-bold text-white transition-colors duration-200 hover:bg-primary"
           >
-            Edit Profile
+            {t('common.buttons.editProfile')}
           </Link>
 
           <button
             type="button"
             className="inline-flex min-h-[54px] items-center justify-center rounded-full border-2 border-primary-mid px-6 text-btn font-bold text-primary-mid transition-colors duration-200 hover:bg-primary-mid hover:text-white"
           >
-            Delete Account
+            {t('common.buttons.deleteAccount')}
           </button>
         </div>
       </div>
@@ -49,7 +52,7 @@ function ShowInfo() {
             id="profile-details-heading"
             className="text-[24px] font-bold leading-tight text-grey-text-primary"
           >
-            Profile Details
+            {t('common.labels.profileDetails')}
           </h3>
         </div>
 
@@ -57,7 +60,7 @@ function ShowInfo() {
           aria-labelledby="profile-details-heading"
           className="grid grid-cols-1 gap-x-10 gap-y-6 pt-6 md:grid-cols-[190px_minmax(0,1fr)] md:gap-y-7"
         >
-          {ACCOUNT_PROFILE_DETAILS.map((item) => (
+          {accountProfileDetails.map((item) => (
             <div key={item.key} className="contents">
               <dt className="text-[18px] leading-none text-grey-text-secondary">{item.label}</dt>
               <dd className="text-[18px] leading-none text-grey-text-secondary">

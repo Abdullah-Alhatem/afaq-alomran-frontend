@@ -4,12 +4,16 @@ import PropertyCard from '@/components/cards/PropertyCard'
 import PropertiesFiltersSidebar from '@/components/PropertiesPage/PropertiesFiltersSidebar'
 import PropertiesResultsHeader from '@/components/PropertiesPage/PropertiesResultsHeader'
 import { filterAndSortProperties } from '@/components/PropertiesPage/filterAndSortProperties'
-import { mockProperties } from '@/components/PropertiesPage/mockProperties'
+import { usePropertiesQuery } from '@/lib/fake-api/hooks'
+import { ChevronDown, SlidersHorizontal } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Properties() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
+  const { data: properties = [] } = usePropertiesQuery()
 
   const [searchQuery, setSearchQuery] = useState('')
   const [priceMin, setPriceMin] = useState('')
@@ -23,8 +27,7 @@ function Properties() {
   const [selectedSpace, setSelectedSpace] = useState('')
   const [selectedBedBath, setSelectedBedBath] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
-
-  const properties = mockProperties
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
   const toggleInSet = (setValue, item) => {
     const next = new Set(setValue)
@@ -87,39 +90,70 @@ function Properties() {
 
   return (
     <div className="overflow-hidden">
-      <CoverSection title="Search Explore Properties" currentPage="Search Explore Properties" />
+      <CoverSection
+        title={t('properties.list.coverTitle')}
+        currentPage={t('properties.list.currentPage')}
+      />
 
       <section className="bg-[#F8F8F8] py-10 lg:py-[72px] -mx-8">
         <div className="home-shell">
-          <div className="flex flex-col lg:flex-row items-start justify-center gap-8 ">
-            <PropertiesFiltersSidebar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-              sortBy={sortBy}
-              setSortBy={setSortBy}
-              onClearFilters={clearFilters}
-              priceMin={priceMin}
-              setPriceMin={setPriceMin}
-              priceMax={priceMax}
-              setPriceMax={setPriceMax}
-              selectedPropertyTypes={selectedPropertyTypes}
-              onTogglePropertyType={onTogglePropertyType}
-              selectedAmenities={selectedAmenities}
-              onToggleAmenity={onToggleAmenity}
-              selectedPriceRange={selectedPriceRange}
-              setSelectedPriceRange={setSelectedPriceRange}
-              selectedSpace={selectedSpace}
-              setSelectedSpace={setSelectedSpace}
-              selectedBedBath={selectedBedBath}
-              setSelectedBedBath={setSelectedBedBath}
-              selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
-              selectedRating={selectedRating}
-              setSelectedRating={setSelectedRating}
-            />
+          <div className="flex flex-col items-start justify-center gap-8 lg:flex-row">
+            <div className="w-full lg:w-[343px] lg:shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsMobileFiltersOpen((prev) => !prev)}
+                className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 border-primary-mid bg-white px-5 py-4 text-primary-mid shadow-sm transition-colors hover:bg-primary-mid hover:text-white lg:hidden"
+                aria-expanded={isMobileFiltersOpen}
+                aria-controls="properties-filters"
+              >
+                <span className="inline-flex items-center gap-3 text-[16px] font-[700] leading-6">
+                  <SlidersHorizontal className="h-5 w-5" />
+                  {t('properties.list.filters.title')}
+                </span>
+                <ChevronDown
+                  className={`h-5 w-5 transition-transform ${
+                    isMobileFiltersOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              <div
+                id="properties-filters"
+                className={`${isMobileFiltersOpen ? 'block' : 'hidden'} mt-4 lg:mt-0 lg:block`}
+              >
+                <PropertiesFiltersSidebar
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
+                  sortBy={sortBy}
+                  setSortBy={setSortBy}
+                  onClearFilters={clearFilters}
+                  priceMin={priceMin}
+                  setPriceMin={setPriceMin}
+                  priceMax={priceMax}
+                  setPriceMax={setPriceMax}
+                  selectedPropertyTypes={selectedPropertyTypes}
+                  onTogglePropertyType={onTogglePropertyType}
+                  selectedAmenities={selectedAmenities}
+                  onToggleAmenity={onToggleAmenity}
+                  selectedPriceRange={selectedPriceRange}
+                  setSelectedPriceRange={setSelectedPriceRange}
+                  selectedSpace={selectedSpace}
+                  setSelectedSpace={setSelectedSpace}
+                  selectedBedBath={selectedBedBath}
+                  setSelectedBedBath={setSelectedBedBath}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  selectedRating={selectedRating}
+                  setSelectedRating={setSelectedRating}
+                />
+              </div>
+            </div>
 
             <div className="w-full flex-1 flex flex-col gap-14">
-              <PropertiesResultsHeader />
+              <PropertiesResultsHeader
+                title={t('properties.list.heading')}
+                description={t('properties.list.description')}
+              />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 {filteredProperties.map((property) => (
@@ -131,7 +165,7 @@ function Properties() {
                     location={property.location}
                     beds={String(property.beds)}
                     baths={String(property.baths)}
-                    sqft={`${property.sqft} sq ft`}
+                    sqft={`${property.sqft} ${t('common.propertyMeta.areaSuffix')}`}
                     price={property.price}
                     status={property.status}
                     onViewDetails={() => navigate(`/properties/${property.id}`)}

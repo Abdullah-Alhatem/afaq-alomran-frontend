@@ -1,7 +1,10 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import bgImage from '@/assets/images/bg-image.jpg'
 
-function CoverSection({ title, currentPage, parentPage = 'Home' }) {
+function CoverSection({ title, currentPage, parentPage }) {
+  const { t } = useTranslation()
+
   return (
     <div
       className="w-full bg-cover bg-no-repeat"
@@ -16,7 +19,9 @@ function CoverSection({ title, currentPage, parentPage = 'Home' }) {
         </h1>
 
         <p className="flex flex-wrap items-center gap-1 font-jakarta text-[14px] leading-[20px] text-white md:text-[16px]">
-          <span>{parentPage} /</span>
+          <span>
+            {parentPage ?? t('common.home')} {t('cover.breadcrumbSeparator')}
+          </span>
           <span className="text-secondary-light">{currentPage}</span>
         </p>
       </div>

@@ -1,12 +1,19 @@
 import { useOutletContext } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
-import { ACCOUNT_NAV_ITEMS, DEFAULT_ACCOUNT_PAGE } from '@/components/account/accountLayoutConfig'
+import {
+  ACCOUNT_PAGE_KEYS,
+  getAccountNavItems,
+  getAccountPageMeta,
+} from '@/components/account/accountLayoutConfig'
 
 function useAccountPage() {
+  const { t } = useTranslation()
+
   return (
     useOutletContext() ?? {
-      accountPage: DEFAULT_ACCOUNT_PAGE,
-      accountNavItems: ACCOUNT_NAV_ITEMS,
+      accountPage: getAccountPageMeta(t, ACCOUNT_PAGE_KEYS.personalInfo),
+      accountNavItems: getAccountNavItems(t),
     }
   )
 }

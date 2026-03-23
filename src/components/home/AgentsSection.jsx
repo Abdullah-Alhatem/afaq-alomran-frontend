@@ -1,36 +1,29 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
+import { useAgentsQuery } from '@/lib/fake-api/hooks'
 import AgentCard from '@/components/cards/AgentCard'
-import { agentItems, agentSocialLinks } from '@/data/agents'
+import SectionActionLink from '@/components/common/SectionActionLink'
+import HomeSectionIntro from './HomeSectionIntro'
+import { HOME_SECTION_PADDING_CLASSNAME } from './homeSectionStyles'
 
 function AgentsSection() {
+  const { t } = useTranslation()
+  const { data: agentItems = [] } = useAgentsQuery()
+
   return (
-    <section className="bg-white py-5 md:py-20 lg:py-24">
+    <section className={`bg-white ${HOME_SECTION_PADDING_CLASSNAME}`}>
       <div className="home-shell">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.08em] text-secondary-light md:text-[18px]">
-              CHECKOUT OUR NEW
-            </p>
-            <h2 className="mt-3 text-[34px] font-bold leading-[1.2] text-[#18181B] md:text-[40px]">
-              Our Agent
-            </h2>
-          </div>
+          <HomeSectionIntro
+            eyebrow={t('home.agents.eyebrow')}
+            title={t('home.agents.title')}
+            eyebrowClassName="text-sm uppercase tracking-[0.08em] md:text-[18px]"
+          />
 
-          <Link
-            to="/agents"
-            className="hidden lg:inline-flex h-[52px] w-fit min-w-[138px] items-center justify-center gap-3 rounded-[10px] border border-secondary-light px-7 text-base font-semibold text-secondary-light transition-colors duration-200 hover:bg-secondary-light hover:text-white"
-          >
-            See All
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="none">
-              <path
-                d="M5 12h14m-5-5 5 5-5 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
+          <SectionActionLink to="/agents" className="hidden w-fit lg:inline-flex">
+            {t('common.buttons.seeAll')}
+          </SectionActionLink>
         </div>
         <div className="flex flex-col gap-5 items-center">
           <div className="mt-10 w-full grid grid-cols-1 gap-y-10 sm:grid-cols-2 md:mt-12 xl:flex xl:justify-between">
@@ -42,25 +35,13 @@ function AgentsSection() {
                 alt={agent.alt}
                 name={agent.name}
                 role={agent.role}
-                socialLinks={agentSocialLinks}
+                socialLinks={agent.socialLinks}
               />
             ))}
           </div>
-          <Link
-            to="/agents"
-            className="lg:hidden inline-flex h-[52px] w-fit min-w-[138px] items-center justify-center gap-3 rounded-[10px] border border-secondary-light px-7 text-base font-semibold text-secondary-light transition-colors duration-200 hover:bg-secondary-light hover:text-white"
-          >
-            See All
-            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5" fill="none">
-              <path
-                d="M5 12h14m-5-5 5 5-5 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
+          <SectionActionLink to="/agents" className="w-fit lg:hidden">
+            {t('common.buttons.seeAll')}
+          </SectionActionLink>
         </div>
       </div>
     </section>

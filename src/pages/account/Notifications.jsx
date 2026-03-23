@@ -1,81 +1,10 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ChevronDown, Clock3, Plus, Search, Trash2 } from 'lucide-react'
 
-import agent1Image from '@/assets/images/agent1.png'
-import agent2Image from '@/assets/images/agent2.png'
+import AccountEmptyState from '@/components/account/AccountEmptyState'
+import { useDeleteNotificationMutation, useNotificationsQuery } from '@/lib/fake-api/hooks'
 import { cn } from '@/lib/utils'
-
-const FILTER_TABS = [
-  { value: 'all', label: 'All' },
-  { value: 'agent', label: 'Agent' },
-  { value: 'company', label: 'Company' },
-]
-
-const STATUS_OPTIONS = [
-  { value: 'unread', label: 'Unread' },
-  { value: 'all', label: 'All Messages' },
-  { value: 'read', label: 'Read' },
-]
-
-const INITIAL_NOTIFICATIONS = [
-  {
-    id: 1,
-    category: 'agent',
-    sender: 'Firas AL-Ahmad',
-    senderKey: 'firas',
-    message:
-      'Welcome! Explore the interactive user guide for your new smart apparel to maximize its benefits.',
-    timeLabel: 'Time (2h ago)',
-    unread: true,
-    avatarType: 'image',
-    avatarSrc: agent1Image,
-  },
-  {
-    id: 2,
-    category: 'agent',
-    sender: 'Firas AL-Ahmad',
-    senderKey: 'firas',
-    message:
-      'Welcome! Explore the interactive user guide for your new smart apparel to maximize its benefits.',
-    timeLabel: 'Time (2h ago)',
-    unread: true,
-    avatarType: 'image',
-    avatarSrc: agent1Image,
-  },
-  {
-    id: 3,
-    category: 'company',
-    sender: 'AFAQ',
-    senderKey: 'afaq',
-    message:
-      'Welcome! Explore the interactive user guide for your new smart apparel to maximize its benefits.',
-    timeLabel: '18:00 PM',
-    unread: true,
-    avatarType: 'company',
-  },
-  {
-    id: 4,
-    category: 'company',
-    sender: 'AFAQ',
-    senderKey: 'afaq',
-    message:
-      'Welcome! Explore the interactive user guide for your new smart apparel to maximize its benefits.',
-    timeLabel: '18:00 PM',
-    unread: true,
-    avatarType: 'company',
-  },
-  {
-    id: 5,
-    category: 'agent',
-    sender: 'Cameron Williamson',
-    senderKey: 'cameron',
-    message: 'A new viewing slot is available for the property you saved yesterday.',
-    timeLabel: 'Yesterday',
-    unread: false,
-    avatarType: 'image',
-    avatarSrc: agent2Image,
-  },
-]
 
 function CompanyAvatar() {
   return (
@@ -170,7 +99,7 @@ function ToolbarSelect({ value, options, onChange, className = '' }) {
   )
 }
 
-function SearchField({ value, onChange }) {
+function SearchField({ value, onChange, placeholder }) {
   return (
     <label className="relative block w-full">
       <Search
@@ -183,14 +112,14 @@ function SearchField({ value, onChange }) {
         type="search"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder="Search ..."
+        placeholder={placeholder}
         className="h-[50px] w-full rounded-[10px] border border-[#D7D7D7] bg-white pl-[50px] pr-4 text-[15px] text-[#181818] shadow-[0_1px_2px_rgba(18,62,86,0.05)] outline-none transition-colors placeholder:text-[#8A8A8A] focus:border-[#123E56]"
       />
     </label>
   )
 }
 
-function NotificationCard({ notification, onRemove }) {
+function NotificationCard({ notification, onRemove, unreadLabel, deleteLabel }) {
   return (
     <article className="flex flex-col gap-4 rounded-[14px] bg-[#ECF1F6] px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-6 lg:px-7">
       <div className="flex min-w-0 flex-1 items-start gap-4 sm:items-center">
@@ -211,7 +140,7 @@ function NotificationCard({ notification, onRemove }) {
             {notification.unread ? (
               <span
                 className="mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#39C61F]"
-                aria-label="Unread"
+                aria-label={unreadLabel}
               />
             ) : null}
           </div>
@@ -230,7 +159,7 @@ function NotificationCard({ notification, onRemove }) {
       <button
         type="button"
         onClick={() => onRemove(notification.id)}
-        aria-label={`Delete notification from ${notification.sender}`}
+        aria-label={deleteLabel(notification.sender)}
         className="inline-flex h-[36px] w-[36px] items-center justify-center self-end rounded-[10px] bg-[#FFEAEA] text-[#FF5757] transition-colors hover:bg-[#FFD9D9] sm:h-[40px] sm:w-[40px] sm:self-center"
       >
         <Trash2 className="h-[18px] w-[18px]" strokeWidth={2} />
@@ -241,19 +170,23 @@ function NotificationCard({ notification, onRemove }) {
 
 function NotificationsToolbar({
   activeTab,
+  tabs,
   onTabChange,
   searchQuery,
   onSearchChange,
+  searchPlaceholder,
   senderFilter,
   senderOptions,
   onSenderChange,
   statusFilter,
+  statusOptions,
   onStatusChange,
+  newMessageLabel,
 }) {
   return (
     <div className="space-y-6 border-b border-[#DE8556] pb-5">
       <div className="flex flex-wrap gap-2.5">
-        {FILTER_TABS.map((tab) => (
+        {tabs.map((tab) => (
           <FilterTabButton
             key={tab.value}
             active={activeTab === tab.value}
@@ -266,9 +199,13 @@ function NotificationsToolbar({
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="grid gap-3 md:grid-cols-[minmax(0,282px)_minmax(0,144px)_minmax(0,120px)]">
-          <SearchField value={searchQuery} onChange={onSearchChange} />
+          <SearchField
+            value={searchQuery}
+            onChange={onSearchChange}
+            placeholder={searchPlaceholder}
+          />
           <ToolbarSelect value={senderFilter} options={senderOptions} onChange={onSenderChange} />
-          <ToolbarSelect value={statusFilter} options={STATUS_OPTIONS} onChange={onStatusChange} />
+          <ToolbarSelect value={statusFilter} options={statusOptions} onChange={onStatusChange} />
         </div>
 
         <button
@@ -276,59 +213,65 @@ function NotificationsToolbar({
           className="inline-flex h-[50px] min-w-[194px] items-center justify-center gap-2 self-start rounded-[10px] bg-[#123E56] px-6 text-[16px] font-bold text-white transition-colors hover:bg-[#0d2a38]"
         >
           <Plus className="h-5 w-5" strokeWidth={2} />
-          <span>New Message</span>
+          <span>{newMessageLabel}</span>
         </button>
       </div>
     </div>
   )
 }
 
-function NotificationsEmptyState() {
-  return (
-    <section className="rounded-[24px] border border-[#E8EEF3] bg-[#ECF1F6] px-6 py-12 text-center sm:px-8">
-      <h2 className="text-[24px] font-bold text-grey-text-primary">No notifications found</h2>
-      <p className="mt-3 text-[16px] leading-7 text-grey-text-secondary">
-        Try another search term or change the filters to see more updates.
-      </p>
-    </section>
-  )
-}
-
 function Notifications() {
-  const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS)
+  const { t } = useTranslation()
+  const { data: localizedNotifications = [] } = useNotificationsQuery()
+  const deleteNotificationMutation = useDeleteNotificationMutation()
   const [activeTab, setActiveTab] = useState('all')
   const [senderFilter, setSenderFilter] = useState('all')
   const [statusFilter, setStatusFilter] = useState('unread')
   const [searchQuery, setSearchQuery] = useState('')
 
-  const senderOptions = useMemo(() => {
-    if (activeTab === 'company') {
-      return [
-        { value: 'all', label: 'All Companies' },
-        { value: 'afaq', label: 'AFAQ' },
-      ]
-    }
+  const tabs = [
+    { value: 'all', label: t('account.notificationsCenter.tabs.all') },
+    { value: 'agent', label: t('account.notificationsCenter.tabs.agent') },
+    { value: 'company', label: t('account.notificationsCenter.tabs.company') },
+  ]
 
-    if (activeTab === 'agent') {
-      return [
-        { value: 'all', label: 'All Agents' },
-        { value: 'firas', label: 'Firas AL-Ahmad' },
-        { value: 'cameron', label: 'Cameron Williamson' },
-      ]
-    }
+  const statusOptions = [
+    { value: 'unread', label: t('common.status.unread') },
+    { value: 'all', label: t('common.status.allMessages') },
+    { value: 'read', label: t('common.status.read') },
+  ]
+
+  const senderOptions = useMemo(() => {
+    const filteredByTab =
+      activeTab === 'all'
+        ? localizedNotifications
+        : localizedNotifications.filter((notification) => notification.category === activeTab)
+
+    const uniqueSenders = Array.from(
+      new Map(
+        filteredByTab.map((notification) => [
+          notification.senderKey,
+          { value: notification.senderKey, label: notification.sender },
+        ]),
+      ).values(),
+    )
 
     return [
-      { value: 'all', label: 'All Agents' },
-      { value: 'firas', label: 'Firas AL-Ahmad' },
-      { value: 'afaq', label: 'AFAQ' },
-      { value: 'cameron', label: 'Cameron Williamson' },
+      {
+        value: 'all',
+        label:
+          activeTab === 'company'
+            ? t('account.notificationsCenter.senderOptions.allCompanies')
+            : t('account.notificationsCenter.senderOptions.allAgents'),
+      },
+      ...uniqueSenders,
     ]
-  }, [activeTab])
+  }, [activeTab, localizedNotifications, t])
 
   const filteredNotifications = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase()
 
-    return notifications.filter((notification) => {
+    return localizedNotifications.filter((notification) => {
       const matchesTab = activeTab === 'all' || notification.category === activeTab
       const matchesSender = senderFilter === 'all' || notification.senderKey === senderFilter
       const matchesStatus =
@@ -342,7 +285,7 @@ function Notifications() {
 
       return matchesTab && matchesSender && matchesStatus && matchesSearch
     })
-  }, [activeTab, notifications, searchQuery, senderFilter, statusFilter])
+  }, [activeTab, localizedNotifications, searchQuery, senderFilter, statusFilter])
 
   function handleTabChange(tabValue) {
     setActiveTab(tabValue)
@@ -350,27 +293,32 @@ function Notifications() {
   }
 
   function handleRemoveNotification(notificationId) {
-    setNotifications((currentNotifications) =>
-      currentNotifications.filter((notification) => notification.id !== notificationId),
-    )
+    deleteNotificationMutation.mutate(notificationId)
   }
 
   return (
     <section className="space-y-8">
       <NotificationsToolbar
         activeTab={activeTab}
+        tabs={tabs}
         onTabChange={handleTabChange}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
+        searchPlaceholder={t('common.fields.searchPlaceholder')}
         senderFilter={senderFilter}
         senderOptions={senderOptions}
         onSenderChange={setSenderFilter}
         statusFilter={statusFilter}
+        statusOptions={statusOptions}
         onStatusChange={setStatusFilter}
+        newMessageLabel={t('common.buttons.newMessage')}
       />
 
       {filteredNotifications.length === 0 ? (
-        <NotificationsEmptyState />
+        <AccountEmptyState
+          title={t('account.notificationsCenter.emptyTitle')}
+          description={t('account.notificationsCenter.emptyDescription')}
+        />
       ) : (
         <div className="space-y-4">
           {filteredNotifications.map((notification) => (
@@ -378,6 +326,10 @@ function Notifications() {
               key={notification.id}
               notification={notification}
               onRemove={handleRemoveNotification}
+              unreadLabel={t('common.status.unread')}
+              deleteLabel={(sender) =>
+                t('account.notificationsCenter.deleteNotification', { sender })
+              }
             />
           ))}
         </div>

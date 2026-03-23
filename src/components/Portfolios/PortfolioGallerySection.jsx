@@ -1,14 +1,17 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
+import { usePortfoliosQuery } from '@/lib/fake-api/hooks'
 import PortfolioGrid from '@/components/Portfolios/PortfolioGrid'
 import PortfolioSectionHeading from '@/components/Portfolios/PortfolioSectionHeading'
-import { allPortfolioItems } from '@/components/Portfolios/portfolioItems'
 
 const INITIAL_VISIBLE_ITEMS = 12
 const ITEMS_PER_BATCH = 3
 
 function PortfolioGallerySection() {
+  const { t } = useTranslation()
   const [visibleItemsCount, setVisibleItemsCount] = useState(INITIAL_VISIBLE_ITEMS)
+  const { data: allPortfolioItems = [] } = usePortfoliosQuery()
 
   const visibleItems = allPortfolioItems.slice(0, visibleItemsCount)
   const hasMoreItems = visibleItemsCount < allPortfolioItems.length
@@ -33,7 +36,7 @@ function PortfolioGallerySection() {
               onClick={handleLoadMore}
               className="inline-flex h-[52px] min-w-[118px] items-center justify-center rounded-[10px] border border-secondary-light px-7 text-base font-medium text-secondary-light transition-colors duration-200 hover:bg-secondary-light hover:text-white"
             >
-              Load More
+              {t('common.buttons.loadMore')}
             </button>
           </div>
         ) : null}

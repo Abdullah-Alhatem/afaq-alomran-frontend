@@ -1,17 +1,24 @@
 import React from 'react'
 import { useFormik } from 'formik'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 import AuthPageBox from '@/components/auth/AuthPageBox'
 import AuthIntroText from '@/components/auth/AuthIntroText'
 import AuthInputField from '@/components/auth/AuthInputField'
+import AuthPageLayout from '@/components/auth/AuthPageLayout'
 import AuthPrimaryButton from '@/components/auth/AuthPrimaryButton'
 import AuthTextLink from '@/components/auth/AuthTextLink'
 import forgotPasswordIcon from '@/assets/Auth/forgotPasswordIcon.svg'
-import LookingForADreamBox from '@/components/LookingForADreamBox'
+import { useForgotPasswordMutation } from '@/lib/fake-api/hooks'
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function ForgotPassword() {
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const forgotPasswordMutation = useForgotPasswordMutation()
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -20,52 +27,55 @@ function ForgotPassword() {
       const errors = {}
 
       if (!values.email.trim()) {
-        errors.email = 'Email is required.'
+        errors.email = t('common.validation.emailRequired')
       } else if (!emailPattern.test(values.email)) {
-        errors.email = 'Please enter a valid email address.'
+        errors.email = t('common.validation.validEmail')
       }
 
       return errors
     },
-    onSubmit: () => {},
+    onSubmit: async (values, actions) => {
+      await forgotPasswordMutation.mutateAsync(values)
+      actions.setSubmitting(false)
+      navigate('/create-new-password')
+    },
   })
 
   return (
-    <div>
-      <main className=" bg-[#F8F8F8] px-4 py-8 sm:px-8 lg:px-16 lg:py-12">
-        <AuthPageBox imageSrc={forgotPasswordIcon} imageAlt="Forgot password illustration">
-          <AuthIntroText
-            title="Forgot Your Password?"
-            subtitle="Welcome Back!"
-            description="Enter your email address and we'll send you a secure link to reset your password."
+    <AuthPageLayout>
+      <AuthPageBox imageSrc={forgotPasswordIcon} imageAlt="Forgot password illustration">
+        <AuthIntroText
+          title={t('auth.forgotPassword.title')}
+          subtitle={t('auth.forgotPassword.subtitle')}
+          description={t('auth.forgotPassword.description')}
+        />
+
+        <form className="mt-8 space-y-8" noValidate onSubmit={formik.handleSubmit}>
+          <AuthInputField
+            label={t('common.labels.email')}
+            name="email"
+            type="email"
+            placeholder={t('common.fields.registeredEmailPlaceholder')}
+            autoComplete="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            touched={formik.touched.email}
+            error={formik.errors.email}
           />
 
-          <form className="mt-8 space-y-8" noValidate onSubmit={formik.handleSubmit}>
-            <AuthInputField
-              label="Email"
-              name="email"
-              type="email"
-              placeholder="Enter your registered email"
-              autoComplete="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              touched={formik.touched.email}
-              error={formik.errors.email}
-            />
+          <AuthPrimaryButton type="submit" disabled={formik.isSubmitting}>
+            {t('common.buttons.sendResetLink')}
+          </AuthPrimaryButton>
+        </form>
 
-            <AuthPrimaryButton type="submit">Send Reset Link</AuthPrimaryButton>
-          </form>
-
-          <p className="mt-8 text-center text-[14px]">
-            <AuthTextLink to="/sign-in" className="text-secondary">
-              Back to Login
-            </AuthTextLink>
-          </p>
-        </AuthPageBox>
-      </main>
-      <LookingForADreamBox variant="auth" />
-    </div>
+        <p className="mt-8 text-center text-[14px]">
+          <AuthTextLink to="/sign-in" className="text-secondary">
+            {t('common.buttons.backToLogin')}
+          </AuthTextLink>
+        </p>
+      </AuthPageBox>
+    </AuthPageLayout>
   )
 }
 

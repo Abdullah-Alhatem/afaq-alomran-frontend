@@ -1,122 +1,28 @@
-import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
-import gallery2Image from '@/assets/PropertyDetails/gallery2.png'
-import apartmentCardImage from '@/assets/images/apartmentCard.png'
-import roomCardImage from '@/assets/images/roomCard.png'
+import AccountEmptyState from '@/components/account/AccountEmptyState'
 import PropertyCard from '@/components/cards/PropertyCard'
-
-const FAVORITE_PROPERTIES = [
-  {
-    id: 101,
-    image: roomCardImage,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 102,
-    image: gallery2Image,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 103,
-    image: roomCardImage,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 104,
-    image: apartmentCardImage,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 105,
-    image: roomCardImage,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 106,
-    image: gallery2Image,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 107,
-    image: roomCardImage,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-  {
-    id: 108,
-    image: apartmentCardImage,
-    title: 'Warm and Cozy Apartment',
-    location: 'Belia Gargen, California',
-    beds: '1',
-    baths: '1',
-    sqft: '732 sq ft',
-    price: 4321,
-    status: 'For Sale',
-  },
-]
+import { useFavoritePropertiesQuery, useRemoveFavoritePropertyMutation } from '@/lib/fake-api/hooks'
 
 function FavoriteProperties() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
-  const [favoriteProperties, setFavoriteProperties] = useState(FAVORITE_PROPERTIES)
+  const { data: favoriteProperties = [] } = useFavoritePropertiesQuery()
+  const removeFavoritePropertyMutation = useRemoveFavoritePropertyMutation()
 
   function handleFavoriteToggle(propertyId, isFavorite) {
     if (!isFavorite) {
-      setFavoriteProperties((currentProperties) =>
-        currentProperties.filter((property) => property.id !== propertyId),
-      )
+      removeFavoritePropertyMutation.mutate(propertyId)
     }
   }
 
   if (favoriteProperties.length === 0) {
     return (
-      <section className="rounded-[24px] border border-[#E8EEF3] bg-[#ECF1F6] px-6 py-12 text-center sm:px-8">
-        <h2 className="text-[24px] font-bold text-grey-text-primary">No favorite properties yet</h2>
-        <p className="mt-3 text-[16px] leading-7 text-grey-text-secondary">
-          Tap the heart on any property card to save it here for quick access later.
-        </p>
-      </section>
+      <AccountEmptyState
+        title={t('account.profile.emptyFavoritesTitle')}
+        description={t('account.profile.emptyFavoritesDescription')}
+      />
     )
   }
 

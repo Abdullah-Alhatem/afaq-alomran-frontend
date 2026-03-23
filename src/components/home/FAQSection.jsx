@@ -1,40 +1,43 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ChevronDown } from 'lucide-react'
 import faqIllustration from "@/assets/icons/FAQ'sIcon.svg"
-import { faqItemsPreview } from '@/data/faqItems'
+import { getFaqItemsPreview } from '@/data/faqItems'
+import SectionActionLink from '@/components/common/SectionActionLink'
+import { HOME_SECTION_PADDING_CLASSNAME } from './homeSectionStyles'
 
 function FAQSection() {
+  const { t } = useTranslation()
   const [openIndex, setOpenIndex] = useState(0)
+  const faqItemsPreview = getFaqItemsPreview(t)
 
   const toggleItem = (index) => {
     setOpenIndex((currentIndex) => (currentIndex === index ? -1 : index))
   }
 
   return (
-    <section className="bg-[#ECF1F6] py-5 md:py-20 lg:py-24">
+    <section className={`bg-muted ${HOME_SECTION_PADDING_CLASSNAME}`}>
       <div className="home-shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:items-start lg:gap-12">
         <div className="space-y-7 lg:space-y-10">
           <div>
             <p className="inline-flex items-center gap-2 text-[16px] font-medium text-secondary-light md:text-[18px]">
               <span className="h-2.5 w-2.5 rounded-full bg-secondary-light" aria-hidden="true" />
-              FAQ&apos;s
+              {t('home.faq.eyebrow')}
             </p>
 
             <h2 className="mt-4 max-w-[680px] text-[34px] font-bold leading-[1.2] text-primary-mid md:text-[56px]">
-              Frequently Asked Questions
+              {t('home.faq.title')}
             </h2>
 
             <p className="mt-4 max-w-[680px] text-[17px] leading-[1.5] text-grey-text-secondary md:text-[20px]">
-              Have questions about buying, selling, or renting with AFAAQ? We&apos;ve got the
-              answers to help guide you through the process.
+              {t('home.faq.description')}
             </p>
           </div>
 
           <div className="mx-auto w-full max-w-[520px] lg:mx-0">
             <img
               src={faqIllustration}
-              alt="Frequently asked questions illustration"
+              alt={t('home.faq.imageAlt')}
               loading="lazy"
               className="h-auto w-full object-contain"
             />
@@ -84,21 +87,12 @@ function FAQSection() {
           </div>
 
           <div className="pt-8 text-center md:pt-10">
-            <Link
+            <SectionActionLink
               to="/faqs"
-              className="inline-flex h-[52px] min-w-[148px] items-center justify-center gap-3 rounded-[10px] border border-primary-mid px-6 text-[18px] font-semibold text-primary-mid transition-colors duration-200 hover:bg-primary-mid hover:text-white md:h-[64px] md:min-w-[174px] md:px-8 md:text-[28px]"
+              className="min-w-[148px] border-primary-mid px-6 text-[18px] text-primary-mid hover:bg-primary-mid md:h-[64px] md:min-w-[174px] md:px-8 md:text-[28px]"
             >
-              See More
-              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6" fill="none">
-                <path
-                  d="M5 12h14m-5-5 5 5-5 5"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Link>
+              {t('common.buttons.seeMore')}
+            </SectionActionLink>
           </div>
         </div>
       </div>

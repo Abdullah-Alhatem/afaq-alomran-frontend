@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { X } from 'lucide-react'
 import { createPortal } from 'react-dom'
+import { useTranslation } from 'react-i18next'
 
 const Popup = ({
   isOpen,
@@ -11,6 +12,7 @@ const Popup = ({
   overlayClassName = '',
   closeOnOverlayClick = true,
 }) => {
+  const { t } = useTranslation()
   useEffect(() => {
     if (!isOpen) {
       return undefined
@@ -48,7 +50,7 @@ const Popup = ({
       <div
         role="dialog"
         aria-modal="true"
-        aria-label={title || 'Popup'}
+        aria-label={title || t('common.popup')}
         className={`relative z-10 w-full max-w-md rounded-2xl bg-white p-5 shadow-[0_24px_80px_rgba(0,0,0,0.2)] ${panelClassName}`}
       >
         <div className="mb-5 flex items-center justify-between">
@@ -57,7 +59,7 @@ const Popup = ({
             type="button"
             onClick={onClose}
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary-mid transition-colors hover:bg-slate-100"
-            aria-label="Close popup"
+            aria-label={t('common.popupActions.close')}
           >
             <X size={20} />
           </button>

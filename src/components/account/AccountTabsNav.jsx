@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import { Bell, CalendarDays, Heart, UserRound } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
-import { ACCOUNT_NAV_ITEMS } from '@/components/account/accountLayoutConfig'
+import { getAccountNavItems } from '@/components/account/accountLayoutConfig'
 import { cn } from '@/lib/utils'
 
 const ACCOUNT_NAV_ICONS = {
@@ -12,6 +13,9 @@ const ACCOUNT_NAV_ICONS = {
 }
 
 function AccountTabsNav() {
+  const { t } = useTranslation()
+  const accountNavItems = getAccountNavItems(t)
+
   return (
     <section className="bg-white">
       <div className="home-shell">
@@ -19,7 +23,7 @@ function AccountTabsNav() {
           aria-label="My account sections"
           className="flex items-center justify-between gap-1 border-b border-[#E8EEF3] md:justify-start md:gap-x-12 lg:gap-x-16"
         >
-          {ACCOUNT_NAV_ITEMS.map((item) => {
+          {accountNavItems.map((item) => {
             const Icon = ACCOUNT_NAV_ICONS[item.key]
 
             return (

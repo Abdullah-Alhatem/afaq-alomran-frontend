@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { cn } from '@/lib/utils'
 
@@ -63,6 +64,7 @@ function AuthInputField({
   wrapperClassName,
   inputClassName,
 }) {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = React.useState(false)
   const inputId = id || name
   const hasError = Boolean(touched && error)
@@ -70,7 +72,7 @@ function AuthInputField({
   const currentInputType = withEye && isVisible ? 'text' : type
 
   const baseInputClasses =
-    'h-14 w-full rounded-[10px] border border-grey-stroke bg-[#ECF1F6] px-4 text-[16px] text-grey-text-secondary outline-none focus:ring-2 focus:ring-primary-light/20'
+    'h-14 w-full rounded-[10px] border border-grey-stroke bg-muted px-4 text-[16px] text-grey-text-secondary outline-none focus:ring-2 focus:ring-primary-light/20'
 
   return (
     <label className={cn('block', wrapperClassName)}>
@@ -99,7 +101,7 @@ function AuthInputField({
             type="button"
             onClick={() => setIsVisible((prev) => !prev)}
             className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 transition hover:bg-grey-20"
-            aria-label={isVisible ? 'Hide password' : 'Show password'}
+            aria-label={isVisible ? t('common.form.hidePassword') : t('common.form.showPassword')}
           >
             <span className="relative block h-6 w-6">
               <span
