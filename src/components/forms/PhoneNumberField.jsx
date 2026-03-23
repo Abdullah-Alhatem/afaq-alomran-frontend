@@ -191,7 +191,7 @@ function PhoneNumberField({
                   aria-selected={isSelected}
                   onClick={() => handleSelectCountry(country.code)}
                   className={cn(
-                    'flex w-full items-center gap-3 rounded-[12px] px-3 py-3 text-left transition-colors',
+                    'flex w-full items-center gap-3 rounded-[12px] px-3 py-3 text-start transition-colors',
                     isSelected ? 'bg-[#ECF1F6] text-primary-mid' : 'hover:bg-[#F8FAFC]',
                   )}
                 >

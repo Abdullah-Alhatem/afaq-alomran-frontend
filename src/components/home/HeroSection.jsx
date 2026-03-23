@@ -33,7 +33,7 @@ function HeroSection() {
                   src={orangeLine}
                   alt=""
                   aria-hidden="true"
-                  className="object-contain absolute bottom-0 -left-2 min-w-[125%]"
+                  className="absolute -bottom-1 sm:bottom-0 -left-0 w-[110%] object-contain sm:w-[125%]"
                 />
               </span>
             </h1>
