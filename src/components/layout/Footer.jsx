@@ -10,6 +10,10 @@ import sendIcon from '../../assets/Footer/Button.png'
 import waIcon from '../../assets/Footer/WA.png'
 import { useNewsletterSubscriptionMutation, useSiteSettingsQuery } from '@/lib/fake-api/hooks'
 
+const FOOTER_FACEBOOK_URL = 'https://www.facebook.com/share/18H8RM7xw5/'
+const FOOTER_EMAIL = 'afaq.alomran1@gmail.com'
+const FOOTER_EMAIL_HREF = `mailto:${FOOTER_EMAIL}`
+
 function Footer() {
   const { t } = useTranslation()
   const { data: siteSettings } = useSiteSettingsQuery()
@@ -33,7 +37,7 @@ function Footer() {
 
   const socialLinks = [
     {
-      href: siteSettings.socialLinks.facebook,
+      href: FOOTER_FACEBOOK_URL,
       icon: fbIcon,
       label: t('agents.social.facebook'),
     },
@@ -66,11 +70,8 @@ function Footer() {
       icon: messageIcon,
       label: t('footer.contact.email'),
       content: (
-        <a
-          href={siteSettings.contact.footerEmailHref}
-          className="transition-colors hover:text-white"
-        >
-          {siteSettings.contact.footerEmailLabel}
+        <a href={FOOTER_EMAIL_HREF} className="transition-colors hover:text-white">
+          {FOOTER_EMAIL}
         </a>
       ),
     },
