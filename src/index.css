@@ -10,6 +10,8 @@
 
 @layer base {
   :root {
+    --site-shell-max-width: 1320px;
+
     /* ─── App Shell ─── */
     --background: 0 0% 100%;
     --foreground: 0 0% 9%; /* #181818 – Greyscale/Text-Primary */
@@ -93,27 +95,40 @@
 }
 
 @layer components {
+  .site-shell,
   .home-shell {
     margin-inline: auto;
     width: calc(100% - 3rem);
-    max-width: 1608px;
+    max-width: var(--site-shell-max-width);
   }
 
   @media (min-width: 768px) {
+    .site-shell,
     .home-shell {
       width: calc(100% - 5rem);
     }
   }
 
   @media (min-width: 1280px) {
+    .site-shell,
     .home-shell {
       width: calc(100% - 10rem);
+      zoom: 0.91;
     }
   }
 
   @media (min-width: 1536px) {
+    .site-shell,
     .home-shell {
       width: calc(100% - 12rem);
+      zoom: 0.88;
+    }
+  }
+
+  @media (min-width: 1800px) {
+    .site-shell,
+    .home-shell {
+      zoom: 0.84;
     }
   }
 }

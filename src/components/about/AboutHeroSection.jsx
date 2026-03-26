@@ -25,8 +25,8 @@ function AboutHeroSection() {
   )
 
   return (
-    <section className="bg-[#EEF4FA] px-5 py-12 sm:px-6 sm:py-14 md:px-10 md:py-16 xl:px-16 xl:py-[6.2rem]">
-      <div className="mx-auto grid w-full max-w-[1608px] gap-12 xl:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] xl:items-start xl:gap-16">
+    <section className="bg-[#EEF4FA] py-12 sm:py-14 md:py-16 xl:py-[6.2rem]">
+      <div className="site-shell grid gap-12 xl:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] xl:items-start xl:gap-16">
         <div className="max-w-[790px] xl:pt-1">
           <div data-page-reveal-item>
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-[#D76838] sm:mb-6 sm:text-base md:text-[1.05rem]">

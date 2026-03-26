@@ -14,16 +14,16 @@ function CoverSection({ title, currentPage, parentPage }) {
         backgroundPosition: '25% 70%',
       }}
     >
-      <div className="home-shell flex min-h-[180px] flex-col justify-center gap-3 py-10 md:min-h-[248px] md:gap-4 md:py-14">
+      <div className="home-shell flex min-h-[142px] flex-col justify-center gap-2 py-6 md:min-h-[176px] md:gap-2 md:py-8">
         <h1
-          className="text-white text-[28px] font-bold leading-[36px] md:text-[40px] md:leading-[56px]"
+          className="text-white text-[24px] font-bold leading-[31px] md:text-[32px] md:leading-[42px]"
           data-page-reveal-item
         >
           {title}
         </h1>
 
         <p
-          className="flex flex-wrap items-center gap-1 font-jakarta text-[14px] leading-[20px] text-white md:text-[16px]"
+          className="flex flex-wrap items-center gap-1 font-jakarta text-[12px] leading-[17px] text-white md:text-[13px]"
           data-page-reveal-item
         >
           <span>

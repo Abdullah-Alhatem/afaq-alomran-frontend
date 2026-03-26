@@ -34,28 +34,28 @@ function PropertiesFiltersSidebar({
   const { t } = useTranslation()
 
   return (
-    <aside className="w-full rounded-2xl bg-muted border-r border-[#FFF8F1] px-6 py-8 lg:w-[343px] lg:py-[72px] flex flex-col gap-8">
-      <h2 className="text-[32px] leading-10 font-[700] text-primary-mid">
+    <aside className="flex w-full flex-col gap-5 rounded-2xl border-r border-[#FFF8F1] bg-muted px-4 py-5 lg:w-[300px] lg:py-10">
+      <h2 className="text-[26px] font-[700] leading-8 text-primary-mid">
         {t('properties.list.filters.title')}
       </h2>
 
-      <div className="w-full flex flex-col gap-6">
+      <div className="flex w-full flex-col gap-4">
         <div className="relative w-full">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-primary-mid" />
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('properties.list.filters.searchPlaceholder')}
-            className="h-16 w-full rounded-lg border-2 border-grey-stroke bg-white pl-12 pr-4 text-[16px] font-[500] text-grey-text-primary placeholder:text-grey-text-primary/50 outline-none"
+            className="h-[52px] w-full rounded-lg border-2 border-grey-stroke bg-white pl-12 pr-4 text-[14px] font-[500] text-grey-text-primary placeholder:text-grey-text-primary/50 outline-none"
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+        <div className="flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center">
           <div className="relative w-full sm:w-[260px]">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="h-[42px] w-full rounded-lg border border-grey-stroke bg-white px-4 pr-10 text-[16px] font-[500] text-grey-text-primary/70 outline-none appearance-none"
+              className="h-10 w-full appearance-none rounded-lg border border-grey-stroke bg-white px-4 pr-10 text-[14px] font-[500] text-grey-text-primary/70 outline-none"
             >
               <option value="default">{t('properties.list.filters.sortDefault')}</option>
               <option value="price-asc">{t('properties.list.filters.sortOptions.priceAsc')}</option>
@@ -73,7 +73,7 @@ function PropertiesFiltersSidebar({
           <button
             type="button"
             onClick={onClearFilters}
-            className="h-[42px] w-full sm:w-[160px] rounded-lg border-2 border-primary-mid px-2 text-[16px] font-[500] text-primary-mid transition-colors hover:bg-primary-mid hover:text-white active:scale-[0.99]"
+            className="h-10 w-full rounded-lg border-2 border-primary-mid px-2 text-[14px] font-[500] text-primary-mid transition-colors hover:bg-primary-mid hover:text-white active:scale-[0.99] sm:w-[138px]"
           >
             {t('properties.list.filters.clear')}
           </button>
@@ -89,28 +89,28 @@ function PropertiesFiltersSidebar({
             value={priceMin}
             onChange={(e) => setPriceMin(e.target.value)}
             placeholder={t('properties.list.filters.price.min')}
-            className="h-[42px] w-full rounded-lg border border-grey-stroke bg-white px-4 text-[16px] font-[500] text-grey-text-primary placeholder:text-grey-text-primary/50 outline-none"
+            className="h-10 w-full rounded-lg border border-grey-stroke bg-white px-4 text-[15px] font-[500] text-grey-text-primary placeholder:text-grey-text-primary/50 outline-none"
           />
           <input
             value={priceMax}
             onChange={(e) => setPriceMax(e.target.value)}
             placeholder={t('properties.list.filters.price.max')}
-            className="h-[42px] w-full rounded-lg border border-grey-stroke bg-white px-4 text-[16px] font-[500] text-grey-text-primary placeholder:text-grey-text-primary/50 outline-none"
+            className="h-10 w-full rounded-lg border border-grey-stroke bg-white px-4 text-[15px] font-[500] text-grey-text-primary placeholder:text-grey-text-primary/50 outline-none"
           />
           <button
             type="button"
-            className="h-[42px] w-full sm:w-[110px] rounded-lg border-2 border-primary-mid px-6 text-[16px] font-[500] text-primary-mid transition-colors hover:bg-primary-mid hover:text-white active:scale-[0.99]"
+            className="h-10 w-full rounded-lg border-2 border-primary-mid px-6 text-[15px] font-[500] text-primary-mid transition-colors hover:bg-primary-mid hover:text-white active:scale-[0.99] sm:w-[104px]"
           >
             {t('properties.list.filters.price.apply')}
           </button>
         </div>
       </div>
 
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.propertyType.title')}</SectionTitle>
           <SectionDivider />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <CheckItem
               checked={selectedPropertyTypes.has('house')}
               label={t('properties.list.filters.propertyType.house')}
@@ -138,10 +138,10 @@ function PropertiesFiltersSidebar({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.amenities.title')}</SectionTitle>
           <SectionDivider />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <CheckItem
               checked={selectedAmenities.has('dishwasher')}
               label={t('properties.list.filters.amenities.dishwasher')}
@@ -188,10 +188,10 @@ function PropertiesFiltersSidebar({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.priceRange.title')}</SectionTitle>
           <SectionDivider />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <RadioItem
               checked={selectedPriceRange === 'low'}
               label={t('properties.list.filters.priceRange.low')}
@@ -213,10 +213,10 @@ function PropertiesFiltersSidebar({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.space.title')}</SectionTitle>
           <SectionDivider />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <RadioItem
               checked={selectedSpace === 'smart'}
               label={t('properties.list.filters.space.smart')}
@@ -238,10 +238,10 @@ function PropertiesFiltersSidebar({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.bedBath.title')}</SectionTitle>
           <SectionDivider />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <RadioItem
               checked={selectedBedBath === 'single'}
               label={t('properties.list.filters.bedBath.single')}
@@ -269,10 +269,10 @@ function PropertiesFiltersSidebar({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.category.title')}</SectionTitle>
           <SectionDivider />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             <RadioItem
               checked={selectedCategory === 'buying'}
               label={t('properties.list.filters.category.buying')}
@@ -288,7 +288,7 @@ function PropertiesFiltersSidebar({
           </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <SectionTitle>{t('properties.list.filters.reviews.title')}</SectionTitle>
           <SectionDivider />
           <div className="flex items-center gap-1">

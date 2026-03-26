@@ -95,10 +95,10 @@ function Properties() {
         currentPage={t('properties.list.currentPage')}
       />
 
-      <section className="bg-[#F8F8F8] py-10 lg:py-[72px] -mx-8">
+      <section className="-mx-8 bg-[#F8F8F8] py-7 lg:py-12">
         <div className="home-shell">
-          <div className="flex flex-col items-start justify-center gap-8 lg:flex-row">
-            <div className="w-full lg:w-[343px] lg:shrink-0">
+          <div className="flex flex-col items-start justify-center gap-5 lg:flex-row">
+            <div className="w-full lg:w-[300px] lg:shrink-0">
               <button
                 type="button"
                 onClick={() => setIsMobileFiltersOpen((prev) => !prev)}
@@ -149,13 +149,13 @@ function Properties() {
               </div>
             </div>
 
-            <div className="w-full flex-1 flex flex-col gap-14">
+            <div className="flex w-full flex-1 flex-col gap-8">
               <PropertiesResultsHeader
                 title={t('properties.list.heading')}
                 description={t('properties.list.description')}
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-[18px] xl:grid-cols-3">
                 {filteredProperties.map((property) => (
                   <PropertyCard
                     key={property.id}

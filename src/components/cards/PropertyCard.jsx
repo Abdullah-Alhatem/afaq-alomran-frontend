@@ -51,15 +51,15 @@ export function PropertyCard({
     <div
       data-page-reveal-item
       className={cn(
-        'mx-auto flex w-full max-w-[364px] flex-col rounded-[22px] bg-white sm:mx-0',
+        'mx-auto flex w-full max-w-[332px] flex-col rounded-[20px] bg-white sm:mx-0',
         'border border-grey-stroke shadow-[0_6px_18px_rgba(24,24,24,0.04)]',
         'hover:shadow-[0_14px_32px_rgba(24,24,24,0.08)] transition-shadow duration-300',
-        'p-[10px] gap-3',
+        'gap-2 p-[8px]',
         'relative',
       )}
     >
       <div className="relative">
-        <div className="w-full h-[216px] md:h-[255px] rounded-[18px] overflow-hidden">
+        <div className="h-[196px] w-full overflow-hidden rounded-[16px] md:h-[220px]">
           <img src={image} alt={title} className="w-full h-full object-cover" />
         </div>
 
@@ -67,7 +67,7 @@ export function PropertyCard({
           onClick={handleFavorite}
           className={cn(
             'absolute top-3 right-3',
-            'w-10 h-10',
+            'h-[34px] w-[34px] md:h-9 md:w-9',
             'flex items-center justify-center',
             'transition-all duration-200',
             'hover:scale-105 active:scale-95',
@@ -78,20 +78,20 @@ export function PropertyCard({
         </button>
       </div>
 
-      <div className="flex gap-3 flex-col px-4 pt-1 pb-4 md:px-5 md:pb-5">
+      <div className="flex flex-col gap-2 px-3.5 pt-1 pb-3.5 md:pb-4">
         <div
           className={cn(
             'flex items-center gap-1.5',
-            'w-fit rounded-[4px] px-4 py-2 text-sm',
+            'w-fit rounded-[4px] px-3 py-1.5 text-xs',
             badgeStyles[statusLabel] || badgeStyles['For Sale'],
           )}
         >
-          <span className="font-bold text-[12px] md:text-[14px]">{statusLabel}</span>
+          <span className="font-bold text-[12px] md:text-[13px]">{statusLabel}</span>
         </div>
 
         <h2
           className={cn(
-            'text-[21px] md:text-[22px] font-medium leading-[1.25]',
+            'text-[18px] font-medium leading-[1.22] md:text-[19px]',
             'text-grey-text-primary',
             'line-clamp-2',
           )}
@@ -100,40 +100,38 @@ export function PropertyCard({
         </h2>
 
         <div className="flex items-center gap-2 pb-1">
-          <MapPin className="h-5 w-5 flex-shrink-0 text-primary-mid" strokeWidth={2.5} />
-          <span className="truncate text-[13px] text-grey-text-tertiary md:text-[14px]">
-            {location}
-          </span>
+          <MapPin className="h-4 w-4 flex-shrink-0 text-primary-mid" strokeWidth={2.5} />
+          <span className="truncate text-[12px] text-grey-text-tertiary">{location}</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 md:gap-x-6">
+        <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1.5 md:gap-x-4">
           <div className="flex items-center gap-1.5">
-            <BedDouble className="h-4 w-4 flex-shrink-0 text-primary-mid" />
+            <BedDouble className="h-[13px] w-[13px] flex-shrink-0 text-primary-mid" />
             <span className="text-[12px] font-medium text-grey-text-primary">
               {beds} {t('common.propertyMeta.bedSuffix')}
             </span>
           </div>
 
           <div className="flex items-center gap-1.5">
-            <Bath className="h-4 w-4 flex-shrink-0 text-primary-mid" />
+            <Bath className="h-[13px] w-[13px] flex-shrink-0 text-primary-mid" />
             <span className="text-[12px] font-medium text-grey-text-primary">
               {baths} {t('common.propertyMeta.bathSuffix')}
             </span>
           </div>
 
           <div className="flex items-center gap-1.5">
-            <Expand className="h-4 w-4 flex-shrink-0 text-primary-mid" />
+            <Expand className="h-[13px] w-[13px] flex-shrink-0 text-primary-mid" />
             <span className="text-[12px] font-medium text-grey-text-primary">{sqft}</span>
           </div>
         </div>
 
-        <div className="mt-auto flex items-end justify-between gap-3 pt-3">
+        <div className="mt-auto flex items-end justify-between gap-2.5 pt-2">
           <div className="flex items-baseline gap-2">
-            <span className="text-[18px] font-semibold text-secondary-light md:text-[20px]">
+            <span className="text-[16px] font-semibold text-secondary-light md:text-[17px]">
               ${formattedPrice}
             </span>
             {showMonthlySuffix ? (
-              <span className="text-[12px] font-medium text-grey-text-tertiary">
+              <span className="text-[10px] font-medium text-grey-text-tertiary">
                 {t('common.propertyMeta.monthSuffix')}
               </span>
             ) : null}
@@ -143,10 +141,10 @@ export function PropertyCard({
             to={`/properties/${id}`}
             onClick={onViewDetails}
             className={cn(
-              'min-w-[98px] px-4 py-2.5',
+              'min-w-[88px] px-3 py-2',
               'rounded-[10px]',
               'border border-secondary-light',
-              'text-[14px] font-medium text-secondary-light',
+              'text-[12px] font-medium text-secondary-light',
               'hover:bg-secondary-light hover:text-white transition-all duration-200',
               'active:scale-95',
               'whitespace-nowrap',
