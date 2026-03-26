@@ -16,11 +16,11 @@ function PropertySection({
   cardKeyPrefix = '',
   footer,
 }) {
-  const { t } = useTranslation()
+  const { i18n, t } = useTranslation()
   const [filter, setFilter] = useState('all')
 
   return (
-    <section className={HOME_SECTION_PADDING_CLASSNAME}>
+    <section className={HOME_SECTION_PADDING_CLASSNAME} dir={i18n.dir()}>
       <div className="home-shell flex flex-col items-center gap-4">
         <div className="w-full mx-auto flex flex-col items-start 2xl:flex-row 2xl:justify-between 2xl:items-center gap-8 2xl:gap-32">
           <HomeSectionIntro
@@ -30,7 +30,7 @@ function PropertySection({
             className="w-full md:w-auto"
           />
 
-          <div className="flex items-center gap-6" data-page-reveal-item>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6" data-page-reveal-item>
             <button
               className={getHomePropertyFilterButtonClasses(filter === 'all')}
               onClick={() => setFilter('all')}
