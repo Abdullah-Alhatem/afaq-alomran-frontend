@@ -9,10 +9,11 @@ import patternIcon from '@/assets/Review Section copy/Pattern.svg'
 import { useHomeReviewsQuery } from '@/lib/fake-api/hooks'
 
 function ReviewsSection() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { data: reviews = [] } = useHomeReviewsQuery()
   const [activeIndex, setActiveIndex] = useState(0)
   const activeReview = reviews[activeIndex]
+  const isRtl = i18n.dir() === 'rtl'
 
   if (!activeReview) {
     return null
@@ -64,7 +65,11 @@ function ReviewsSection() {
             </p>
           </div>
 
-          <div className="mt-8 flex items-center gap-5 md:mt-12" data-page-reveal-item>
+          <div
+            dir="ltr"
+            className={`mt-8 flex items-center gap-5 md:mt-12 ${isRtl ? 'justify-end' : ''}`}
+            data-page-reveal-item
+          >
             <button
               type="button"
               onClick={handlePrevious}
