@@ -52,7 +52,7 @@ function FAQSection() {
               return (
                 <article
                   key={item.question}
-                  className={`overflow-hidden rounded-[18px] border-l-4 transition-colors duration-200 ${
+                  className={`overflow-hidden rounded-[18px] border-s-4 transition-colors duration-200 ${
                     isOpen
                       ? 'border-primary-light bg-[#DCEAF2]'
                       : 'border-[#D6E3EA] bg-[#F9F9FB] hover:bg-[#F2F7FB]'
@@ -61,7 +61,7 @@ function FAQSection() {
                   <button
                     type="button"
                     onClick={() => toggleItem(index)}
-                    className="flex w-full items-start gap-4 px-5 py-6 text-left md:px-7 md:py-7"
+                    className="flex w-full items-start gap-4 px-5 py-6 text-start md:px-7 md:py-7"
                     aria-expanded={isOpen}
                   >
                     <ChevronDown
@@ -77,7 +77,7 @@ function FAQSection() {
                   </button>
 
                   {isOpen && (
-                    <p className="px-5 pb-6 pl-[56px] text-[16px] leading-[1.45] text-primary-light md:px-7 md:pb-7 md:pl-[68px] md:text-[20px]">
+                    <p className="px-5 pb-6 ps-[56px] text-[16px] leading-[1.45] text-primary-light md:px-7 md:pb-7 md:ps-[68px] md:text-[20px]">
                       {item.answer}
                     </p>
                   )}

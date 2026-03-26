@@ -248,7 +248,7 @@ function PropertyDetailsContent({ property }) {
           <section>
             <SectionHeading title={t('properties.detail.relatedTitle')} />
 
-            <div className="mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+            <div className="mt-5 grid gap-5 sm:mt-6 sm:grid-cols-2 xl:grid-cols-3">
               {relatedProperties.map((relatedProperty) => (
                 <PropertyCard
                   key={relatedProperty.id}

@@ -11,7 +11,7 @@ const HeaderMenuToggleButton = ({ onClick, className = '' }) => {
     <button
       type="button"
       className={cn(
-        'inline-flex shrink-0 items-center justify-center lg:-mx-3',
+        'inline-flex h-11 w-11 shrink-0 items-center justify-center lg:-mx-3',
         isRtl && 'order-last',
         className,
       )}
@@ -22,7 +22,7 @@ const HeaderMenuToggleButton = ({ onClick, className = '' }) => {
         src={menuToggler}
         alt=""
         aria-hidden="true"
-        className={`h-auto w-auto object-contain ${isRtl ? '[transform:scaleX(-1)]' : ''}`}
+        className={`h-full w-full object-contain ${isRtl ? '[transform:scaleX(-1)]' : ''}`}
       />
     </button>
   )
