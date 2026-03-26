@@ -9,11 +9,10 @@ import patternIcon from '@/assets/Review Section copy/Pattern.svg'
 import { useHomeReviewsQuery } from '@/lib/fake-api/hooks'
 
 function ReviewsSection() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const { data: reviews = [] } = useHomeReviewsQuery()
   const [activeIndex, setActiveIndex] = useState(0)
   const activeReview = reviews[activeIndex]
-  const isRtl = i18n.dir() === 'rtl'
 
   if (!activeReview) {
     return null

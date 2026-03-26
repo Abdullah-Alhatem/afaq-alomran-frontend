@@ -102,7 +102,7 @@ function Properties() {
               <button
                 type="button"
                 onClick={() => setIsMobileFiltersOpen((prev) => !prev)}
-                className="flex w-full items-center justify-between gap-3 rounded-2xl border-2 border-primary-mid bg-white px-5 py-4 text-primary-mid shadow-sm transition-colors hover:bg-primary-mid hover:text-white lg:hidden"
+                className="flex home-shell items-center justify-between gap-3 rounded-2xl border-2 border-primary-mid bg-white px-5 py-4 text-primary-mid shadow-sm transition-colors hover:bg-primary-mid hover:text-white lg:hidden mx-auto"
                 aria-expanded={isMobileFiltersOpen}
                 aria-controls="properties-filters"
               >
