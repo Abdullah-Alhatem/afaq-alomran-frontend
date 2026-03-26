@@ -30,7 +30,7 @@ function PropertySection({
             className="w-full md:w-auto"
           />
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6" data-page-reveal-item>
             <button
               className={getHomePropertyFilterButtonClasses(filter === 'all')}
               onClick={() => setFilter('all')}
@@ -70,7 +70,7 @@ function PropertySection({
             ))}
           </div>
 
-          {footer}
+          {footer ? <div data-page-reveal-item>{footer}</div> : null}
         </div>
       </div>
     </section>

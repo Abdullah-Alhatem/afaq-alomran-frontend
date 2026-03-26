@@ -19,12 +19,13 @@ function HeroSection() {
     <section className="overflow-hidden bg-primary-mid">
       <div className="home-shell relative pt-5 text-white lg:min-h-[720px] lg:pt-20">
         <div
+          data-page-reveal-lock
           className={cn(
             'max-w-[768px] space-y-6 lg:max-w-[calc(100%-520px)] lg:space-y-10 xl:max-w-[calc(100%-620px)] 2xl:max-w-[786px]',
             isRtl && 'lg:ml-auto',
           )}
         >
-          <div className="space-y-4">
+          <div className="space-y-4" data-page-reveal-item>
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-[58px] lg:leading-[170%]">
               {t('home.hero.titlePrefix')}{' '}
               <span className="text-secondary-light relative">
@@ -39,11 +40,11 @@ function HeroSection() {
             </h1>
           </div>
 
-          <p className="text-base text-white/90 sm:text-[18px] leading-7">
+          <p className="text-base leading-7 text-white/90 sm:text-[18px]" data-page-reveal-item>
             {t('home.hero.description')}
           </p>
 
-          <div className="flex flex-wrap items-center gap-4 py-6">
+          <div className="flex flex-wrap items-center gap-4 py-6" data-page-reveal-item>
             <Link
               to="/properties"
               className={
@@ -61,7 +62,10 @@ function HeroSection() {
             </Link>
           </div>
 
-          <div className="grid max-w-[560px] grid-cols-1 gap-6 lg:pt-4 sm:grid-cols-3 sm:gap-5">
+          <div
+            className="grid max-w-[560px] grid-cols-1 gap-6 lg:pt-4 sm:grid-cols-3 sm:gap-5"
+            data-page-reveal-item
+          >
             {stats.map((item) => (
               <div key={item.label}>
                 <p className="text-3xl sm:text-[40px] font-bold leading-none">
@@ -75,6 +79,7 @@ function HeroSection() {
         </div>
 
         <div
+          data-page-reveal-item
           className={cn(
             'pt-6 lg:absolute lg:bottom-0 lg:w-[min(52vw,892px)] lg:pt-0',
             isRtl

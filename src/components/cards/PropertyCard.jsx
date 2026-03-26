@@ -48,6 +48,7 @@ export function PropertyCard({
 
   return (
     <div
+      data-page-reveal-item
       className={cn(
         'mx-auto flex w-full max-w-[364px] flex-col rounded-[22px] bg-white sm:mx-0',
         'border border-grey-stroke shadow-[0_6px_18px_rgba(24,24,24,0.04)]',

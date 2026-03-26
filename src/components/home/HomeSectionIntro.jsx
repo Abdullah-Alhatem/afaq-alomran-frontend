@@ -13,7 +13,7 @@ function HomeSectionIntro({
   const isCentered = align === 'center'
 
   return (
-    <div className={cn(isCentered ? 'text-center' : 'text-start', className)}>
+    <div className={cn(isCentered ? 'text-center' : 'text-left', className)} data-page-reveal-item>
       {eyebrow ? (
         <p
           className={cn(

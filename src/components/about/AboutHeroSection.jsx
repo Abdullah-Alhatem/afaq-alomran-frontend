@@ -28,34 +28,37 @@ function AboutHeroSection() {
     <section className="bg-[#EEF4FA] px-5 py-12 sm:px-6 sm:py-14 md:px-10 md:py-16 xl:px-16 xl:py-[6.2rem]">
       <div className="mx-auto grid w-full max-w-[1608px] gap-12 xl:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] xl:items-start xl:gap-16">
         <div className="max-w-[790px] xl:pt-1">
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-[#D76838] sm:mb-6 sm:text-base md:text-[1.05rem]">
-            {t('aboutPage.hero.eyebrow')}
-          </p>
+          <div data-page-reveal-item>
+            <p className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-[#D76838] sm:mb-6 sm:text-base md:text-[1.05rem]">
+              {t('aboutPage.hero.eyebrow')}
+            </p>
 
-          <h1 className="max-w-[768px] text-[clamp(2.35rem,6vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-[#123E56] sm:leading-[1.12] xl:leading-[1.18]">
-            <span className="block">{t('aboutPage.hero.lineOne')}</span>
-            <span className="relative mt-3 inline-block sm:mt-4">
-              {t('aboutPage.hero.lineTwoPrefix')}{' '}
-              <span className="relative inline-block">
-                {t('aboutPage.hero.lineTwoHighlight')}
-                <img
-                  src={arrowInHero}
-                  alt=""
-                  aria-hidden="true"
-                  className="pointer-events-none absolute left-1/2 top-full hidden w-[190px] -translate-x-1/2 sm:block lg:left-[58%] lg:w-[228px]"
-                />
+            <h1 className="max-w-[768px] text-[clamp(2.35rem,6vw,3.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-[#123E56] sm:leading-[1.12] xl:leading-[1.18]">
+              <span className="block">{t('aboutPage.hero.lineOne')}</span>
+              <span className="relative mt-3 inline-block sm:mt-4">
+                {t('aboutPage.hero.lineTwoPrefix')}{' '}
+                <span className="relative inline-block">
+                  {t('aboutPage.hero.lineTwoHighlight')}
+                  <img
+                    src={arrowInHero}
+                    alt=""
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/2 top-full hidden w-[190px] -translate-x-1/2 sm:block lg:left-[58%] lg:w-[228px]"
+                  />
+                </span>
               </span>
-            </span>
-          </h1>
+            </h1>
 
-          <p className="mt-5 max-w-[680px] text-base leading-8 text-[#5C5C5C] sm:text-lg sm:leading-9 lg:mt-7 lg:text-[1.35rem] lg:leading-[2.1]">
-            {t('aboutPage.hero.description')}
-          </p>
+            <p className="mt-5 max-w-[680px] text-base leading-8 text-[#5C5C5C] sm:text-lg sm:leading-9 lg:mt-7 lg:text-[1.35rem] lg:leading-[2.1]">
+              {t('aboutPage.hero.description')}
+            </p>
+          </div>
 
           <div className="mt-8 max-w-[720px] space-y-5 sm:mt-10 sm:space-y-6 lg:mt-11 lg:space-y-7">
             {featureCards.map((card) => (
               <article
                 key={card.title}
+                data-page-reveal-item
                 className="flex flex-col gap-4 rounded-[24px] bg-white p-5 shadow-[0_22px_65px_rgba(18,62,86,0.10)] sm:flex-row sm:items-start sm:gap-5 sm:p-6 lg:px-7 lg:py-6"
               >
                 <img
@@ -80,7 +83,7 @@ function AboutHeroSection() {
 
         <div className="grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.82fr)] lg:items-start lg:gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(305px,0.94fr)] xl:gap-8">
           <div className="lg:pt-10 xl:pt-[4.75rem]">
-            <div className={imageFrameClass}>
+            <div className={imageFrameClass} data-page-reveal-item>
               <div className={imageInnerClass}>
                 <img
                   src={aboutUs1}
@@ -92,7 +95,7 @@ function AboutHeroSection() {
           </div>
 
           <div className="grid gap-6 sm:gap-8 lg:gap-6 xl:gap-9">
-            <div className={imageFrameClass}>
+            <div className={imageFrameClass} data-page-reveal-item>
               <div className={imageInnerClass}>
                 <img
                   src={aboutUs2}
@@ -102,7 +105,7 @@ function AboutHeroSection() {
               </div>
             </div>
 
-            <div className={imageFrameClass}>
+            <div className={imageFrameClass} data-page-reveal-item>
               <div className={imageInnerClass}>
                 <img
                   src={aboutUs3}

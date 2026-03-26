@@ -6,7 +6,7 @@ export function AgentCard({ to, image, alt, name, role, socialLinks = [], classN
   const cardWrapperProps = to ? { to } : {}
 
   return (
-    <article className={cn('max-w-[280px] mx-auto text-center', className)}>
+    <article className={cn('mx-auto max-w-[280px] text-center', className)} data-page-reveal-item>
       <CardWrapper {...cardWrapperProps} className="block">
         <div className="block h-[450px] w-full overflow-hidden rounded-[12px] sm:h-[340px] lg:h-[390px]">
           <img src={image} alt={alt} loading="lazy" className="h-full w-full object-cover" />

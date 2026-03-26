@@ -1,4 +1,5 @@
 import CoverSection from '@/components/CoverSection'
+import PageReveal from '@/components/PageReveal'
 import LookingForADreamBox from '@/components/LookingForADreamBox'
 import AccountTabsNav from '@/components/account/AccountTabsNav'
 import {
@@ -25,7 +26,9 @@ function AccountLayout() {
 
       <main className="bg-white">
         <div className="home-shell py-8 md:py-10 lg:py-12">
-          <Outlet context={{ accountPage, accountNavItems }} />
+          <PageReveal>
+            <Outlet context={{ accountPage, accountNavItems }} />
+          </PageReveal>
         </div>
       </main>
 

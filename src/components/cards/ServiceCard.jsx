@@ -52,7 +52,7 @@ export function ServiceCard({
   const activeStyle = styles[variant] ?? styles.service
 
   return (
-    <div className={cn(activeStyle.container, className)}>
+    <div className={cn(activeStyle.container, className)} data-page-reveal-item>
       <div className={activeStyle.iconWrapper}>
         <IconComponent className={activeStyle.icon} />
       </div>

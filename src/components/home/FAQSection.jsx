@@ -19,7 +19,7 @@ function FAQSection() {
     <section className={`bg-muted ${HOME_SECTION_PADDING_CLASSNAME}`}>
       <div className="home-shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.08fr)] lg:items-start lg:gap-12">
         <div className="space-y-7 lg:space-y-10">
-          <div>
+          <div data-page-reveal-item>
             <p className="inline-flex items-center gap-2 text-[16px] font-medium text-secondary-light md:text-[18px]">
               <span className="h-2.5 w-2.5 rounded-full bg-secondary-light" aria-hidden="true" />
               {t('home.faq.eyebrow')}
@@ -34,7 +34,7 @@ function FAQSection() {
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-[520px] lg:mx-0">
+          <div className="mx-auto w-full max-w-[520px] lg:mx-0" data-page-reveal-item>
             <img
               src={faqIllustration}
               alt={t('home.faq.imageAlt')}
@@ -44,7 +44,7 @@ function FAQSection() {
           </div>
         </div>
 
-        <div>
+        <div data-page-reveal-item>
           <div className="space-y-4 md:space-y-5">
             {faqItemsPreview.map((item, index) => {
               const isOpen = openIndex === index

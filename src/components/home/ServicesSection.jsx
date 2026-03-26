@@ -41,7 +41,10 @@ function ServicesSection() {
           title={t('home.services.title')}
         />
 
-        <div className="flex flex-col justify-between items-center gap-8 md:gap-14 w-full mx-auto">
+        <div
+          className="mx-auto flex w-full flex-col items-center justify-between gap-8 md:gap-14"
+          data-page-reveal-item
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-14 w-full">
             {services.map((service, index) => (
               <ServiceCard
