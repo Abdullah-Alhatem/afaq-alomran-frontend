@@ -1,4 +1,5 @@
 import I18nDocumentSync from '@/components/I18nDocumentSync'
+import PageReveal from '@/components/PageReveal'
 import ScrollToTop from '@/components/ScrollToTop'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -11,9 +12,9 @@ function MainLayout() {
       <ScrollToTop />
       <Header />
 
-      <div className="">
+      <PageReveal>
         <Outlet />
-      </div>
+      </PageReveal>
 
       <Footer />
     </div>

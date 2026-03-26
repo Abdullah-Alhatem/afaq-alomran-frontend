@@ -7,6 +7,7 @@ function SectionActionLink({ to, children, className, showArrow = true, arrowCla
   return (
     <Link
       to={to}
+      data-page-reveal-item
       className={cn(
         'inline-flex h-[52px] min-w-[138px] items-center justify-center gap-3 rounded-[10px] border border-secondary-light px-7 text-base font-semibold text-secondary-light transition-colors duration-200 hover:bg-secondary-light hover:text-white',
         className,

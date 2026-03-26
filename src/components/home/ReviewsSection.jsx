@@ -48,21 +48,23 @@ function ReviewsSection() {
       />
 
       <div className="home-shell relative grid gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1fr)] lg:items-center lg:gap-14">
-        <div className="max-w-[640px] text-white">
-          <p className="text-[16px] font-medium uppercase tracking-[0.08em] text-secondary-light md:text-[18px]">
-            {t('home.reviews.eyebrow')}
-          </p>
+        <div className="max-w-[640px] text-white" data-page-reveal-lock>
+          <div data-page-reveal-item>
+            <p className="text-[16px] font-medium uppercase tracking-[0.08em] text-secondary-light md:text-[18px]">
+              {t('home.reviews.eyebrow')}
+            </p>
 
-          <h2 className="mt-4 text-[38px] font-bold leading-[1.08] sm:text-[48px] lg:text-[64px]">
-            {t('home.reviews.title')}
-            <span className="text-secondary-light">!</span>
-          </h2>
+            <h2 className="mt-4 text-[38px] font-bold leading-[1.08] sm:text-[48px] lg:text-[64px]">
+              {t('home.reviews.title')}
+              <span className="text-secondary-light">!</span>
+            </h2>
 
-          <p className="mt-5 max-w-[620px] text-[18px] leading-[1.55] text-white/90 md:text-[22px]">
-            {t('home.reviews.description')}
-          </p>
+            <p className="mt-5 max-w-[620px] text-[18px] leading-[1.55] text-white/90 md:text-[22px]">
+              {t('home.reviews.description')}
+            </p>
+          </div>
 
-          <div className="mt-8 flex items-center gap-5 md:mt-12">
+          <div className="mt-8 flex items-center gap-5 md:mt-12" data-page-reveal-item>
             <button
               type="button"
               onClick={handlePrevious}
@@ -83,7 +85,7 @@ function ReviewsSection() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[760px]">
+        <div className="relative mx-auto w-full max-w-[760px]" data-page-reveal-item>
           <div className="relative overflow-hidden rounded-[28px] bg-white px-6 py-7 shadow-[0_24px_60px_rgba(7,46,69,0.24)] sm:px-8 sm:py-9 md:px-10 md:py-10 lg:min-h-[446px] lg:px-12 lg:py-12">
             <div className="flex flex-col gap-6 lg:gap-8">
               <img

@@ -14,6 +14,7 @@ function PortfolioGrid({ items, className, imageClassName }) {
         <Link
           to={`/portfolios/${item.id}`}
           key={item.id}
+          data-page-reveal-item
           className="group overflow-hidden rounded-[12px]"
         >
           <img

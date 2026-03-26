@@ -47,7 +47,7 @@ function LookingForADreamBox({ variant = 'default', customWidth, background = 'b
                 className="absolute bottom-0 right-0 h-[208px] w-[434px] max-w-none"
               />
             </div>
-            <div className="hidden shrink-0 lg:block lg:w-[390px]">
+            <div className="hidden shrink-0 lg:block lg:w-[390px]" data-page-reveal-item>
               <img
                 src={houseImage}
                 alt="Dream home"
@@ -58,7 +58,7 @@ function LookingForADreamBox({ variant = 'default', customWidth, background = 'b
             <div className="relative flex flex-1 items-center">
               <div className="relative z-10 w-full px-6 py-7 lg:px-12 lg:py-8 xl:px-14">
                 <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
-                  <div className="max-w-[690px]">
+                  <div className="max-w-[690px]" data-page-reveal-item>
                     <h2 className="text-[32px] font-bold leading-10 lg:text-[40px]">
                       {t('ctaBox.titlePrefix')}{' '}
                       <span className="relative whitespace-nowrap">
@@ -82,6 +82,7 @@ function LookingForADreamBox({ variant = 'default', customWidth, background = 'b
 
                   <Link
                     to="/properties"
+                    data-page-reveal-item
                     className="w-full text-center shrink-0 whitespace-nowrap rounded-[18px] bg-secondary px-6 py-3 text-btn font-bold leading-[150%] text-secondary-foreground transition hover:bg-secondary-light lg:w-fit lg:rounded-xl"
                   >
                     {t('common.buttons.exploreProperties')}
