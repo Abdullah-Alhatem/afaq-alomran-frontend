@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { useTranslation } from 'react-i18next'
 
 function HomeSectionIntro({
   eyebrow,
@@ -10,10 +11,16 @@ function HomeSectionIntro({
   titleClassName,
   descriptionClassName,
 }) {
+  const { i18n } = useTranslation()
   const isCentered = align === 'center'
+  const alignmentClass = isCentered
+    ? 'text-center'
+    : i18n.dir() === 'rtl'
+      ? 'text-right'
+      : 'text-left'
 
   return (
-    <div className={cn(isCentered ? 'text-center' : 'text-left', className)} data-page-reveal-item>
+    <div className={cn(alignmentClass, className)} data-page-reveal-item>
       {eyebrow ? (
         <p
           className={cn(

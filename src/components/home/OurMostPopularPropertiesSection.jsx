@@ -106,7 +106,7 @@ function OurMostPopularPropertiesSection() {
   }
 
   return (
-    <section className={HOME_SECTION_PADDING_CLASSNAME}>
+    <section className={HOME_SECTION_PADDING_CLASSNAME} dir={i18n.dir()}>
       <div className="home-shell flex flex-col items-center gap-4">
         <div className="mx-auto flex w-full flex-col items-start gap-8 2xl:flex-row 2xl:items-center 2xl:justify-between 2xl:gap-32">
           <HomeSectionIntro
