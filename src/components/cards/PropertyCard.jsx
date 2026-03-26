@@ -38,6 +38,7 @@ export function PropertyCard({
       : status === 'For Rent'
         ? t('common.status.forRent')
         : status
+  const showMonthlySuffix = status === 'For Rent'
 
   const badgeStyles = {
     'For Sale': 'bg-[#E7F3E8] text-success',
@@ -131,9 +132,11 @@ export function PropertyCard({
             <span className="text-[18px] font-semibold text-secondary-light md:text-[20px]">
               ${formattedPrice}
             </span>
-            <span className="text-[12px] font-medium text-grey-text-tertiary">
-              {t('common.propertyMeta.monthSuffix')}
-            </span>
+            {showMonthlySuffix ? (
+              <span className="text-[12px] font-medium text-grey-text-tertiary">
+                {t('common.propertyMeta.monthSuffix')}
+              </span>
+            ) : null}
           </div>
 
           <Link
